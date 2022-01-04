@@ -5,7 +5,7 @@ class QuizCreateView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blueAccent,
+      backgroundColor: Colors.white,
       body: Container(
         child: Center(
           child: Text("Create quiz"),

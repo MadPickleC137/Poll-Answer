@@ -11,7 +11,6 @@ class QuizListConrtoller extends GetxController {
     "Мои",
     "Новые",
     "Авто",
-    "Спорт",
     "Еда",
     "Спорт",
     "Чувства",

@@ -5,6 +5,7 @@ import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:get/get.dart';
 import 'package:poll_answer/core/utils/constants.dart';
 import 'package:poll_answer/create_quiz/quiz_create_view.dart';
+import 'package:poll_answer/disconnect/disconnect_view.dart';
 import 'package:poll_answer/navigation/navigation_controller.dart';
 import 'package:poll_answer/profile/profile_view.dart';
 import 'package:poll_answer/quiz_list/quiz_list_view.dart';
@@ -13,6 +14,7 @@ import 'package:poll_answer/theme/colors.dart';
 /**
  * Виджет нижней навигационной панели
  * [NavigationController] - это руторый контроллер
+ * Обновление данного экрана повлечет обновление всех дочерних виджетов в [_screens]
  */
 
 class Navigation extends StatelessWidget {
@@ -29,8 +31,9 @@ class Navigation extends StatelessWidget {
   }
 
   Widget bottomNavBar(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
     return Container(
-      width: double.infinity,
+      width: width,
       height: 55,
       margin: EdgeInsets.all(8),
       decoration: BoxDecoration(
@@ -45,40 +48,41 @@ class Navigation extends StatelessWidget {
                 offset: Offset(0.4, 4.65))
           ],
           color: bottomNavBarColor),
-      child: Row(
-        mainAxisSize: MainAxisSize.max,
-        children: [
-          Spacer(),
-          _itemBottomNawBar(0, tr('pool')),
-          Spacer(),
-          Padding(
-            padding: const EdgeInsets.only(left: 24.0),
-            child: _itemBottomNawBar(1, ""),
-          ),
-          Spacer(),
-          _itemBottomNawBar(2, tr('my_quiz')),
-          Spacer(),
-        ],
+      child: Center(
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            _itemBottomNawBar(0, tr('pool')),
+            _itemBottomNawBar(1, ""),
+            _itemBottomNawBar(2, tr('my_quiz')),
+          ],
+        ),
       ),
     );
   }
 
   Widget _itemBottomNawBar(int position, String title) {
-    return ElevatedButton(
+    return TextButton(
       onPressed: () {
         controller.onChangeScreen(position);
       },
-      style: ElevatedButton.styleFrom(
-          shape: CircleBorder(),
-          elevation: 1.0,
-          shadowColor: transparent,
-          primary: transparent,
-          onPrimary: transparent),
-      // shape: CircleBorder(),
+      style: ButtonStyle(
+        minimumSize: MaterialStateProperty.all(Size(100, 50)),
+        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+          ),
+        ),
+        overlayColor: MaterialStateProperty.all(Color(0xFF3CAF7D)),
+        backgroundColor: MaterialStateProperty.all(Colors.transparent),
+        shadowColor: MaterialStateProperty.all(Colors.transparent),
+      ),
       child: Column(
         children: [
           Padding(
-            padding: EdgeInsets.only(top: (position == 1 ? 9.0 : 4.0)),
+            padding: EdgeInsets.only(top: (position == 1 ? 2.0 : 0.0)),
             child: controller.screenIndex.value == position
                 ? _iconsSelected[position]
                 : _icons[position],
@@ -94,7 +98,7 @@ class Navigation extends StatelessWidget {
                         : itemNavBarColor,
                   ),
                 )
-              : Container()
+              : Container(),
         ],
       ),
     );
@@ -108,8 +112,8 @@ class Navigation extends StatelessWidget {
     ),
     Image.asset(
       'assets/img/ic_add_quiz.png',
-      width: iconNavSize + 4,
-      height: iconNavSize + 4,
+      width: iconNavSize + 10,
+      height: iconNavSize + 10,
     ),
     Image.asset(
       'assets/img/ic_profile.png',
@@ -125,8 +129,8 @@ class Navigation extends StatelessWidget {
     ),
     Image.asset(
       'assets/img/ic_add_quiz_selected.png',
-      width: iconNavSize + 4,
-      height: iconNavSize + 4,
+      width: iconNavSize + 10,
+      height: iconNavSize + 10,
     ),
     Image.asset(
       'assets/img/ic_profile_selected.png',
