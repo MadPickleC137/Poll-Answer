@@ -34,13 +34,13 @@ class User {
   }
 
   Map<String, dynamic> toMap() {
-    return {'uuid': getUuid, 'token': getToken};
+    return {'guid': getUuid, 'token': getToken};
   }
 
   User fromMap(Map<String, dynamic> map) {
     return User()
       ..setToken = map['token']
-      ..setUuid = map['uuid'];
+      ..setUuid = map['guid'];
   }
 
   String toJson() => json.encode(toMap());

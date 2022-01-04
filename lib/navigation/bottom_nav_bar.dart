@@ -92,7 +92,7 @@ class Navigation extends StatelessWidget {
                   title,
                   style: TextStyle(
                     fontFamily: 'Rubik',
-                    fontSize: 12,
+                    fontSize: 10,
                     color: controller.screenIndex.value == position
                         ? itemNavBarTitleSelectedColor
                         : itemNavBarColor,
