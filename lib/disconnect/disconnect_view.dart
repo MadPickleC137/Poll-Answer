@@ -43,7 +43,7 @@ class DisconnectView extends StatelessWidget {
               child: Text(
                 tr('disconnect_description'),
                 style: TextStyle(
-                    fontFamily: 'Rubik',
+                    fontFamily: 'rubik',
                     fontSize: 16,
                     wordSpacing: 2.4,
                     letterSpacing: 1.0,
@@ -86,7 +86,7 @@ class DisconnectView extends StatelessWidget {
                   child: Text(
                     "Ok",
                     style: TextStyle(
-                      fontFamily: 'Rubik',
+                      fontFamily: 'rubik',
                       fontSize: 14,
                       color: diconnectTextColor,
                     ),

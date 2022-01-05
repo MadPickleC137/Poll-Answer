@@ -1,16 +1,19 @@
 # Poll Answer
+    The app allows people to receive evaluative recommendations from other users. 
+    This helps them make decisions in difficult life and everyday situations.
+# Using plugins
+    - Getx
+    - Hive
+    - Fl_chart
+    - Http
+    - Permissions_handler
+    - Flutter_launcher_icons
+    - Easy_localization
+    - Awesome_notifications
+    - Animate_do
+    - Lottie
 
-A new Flutter project.
+# Architecture application
+    - MVC
+    - Reactive
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.

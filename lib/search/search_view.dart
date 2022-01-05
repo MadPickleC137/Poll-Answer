@@ -76,6 +76,6 @@ class SearchView extends StatelessWidget {
   }
 
   TextStyle searchTextStyle() {
-    return TextStyle(color: appBarTextColor, fontSize: 16, fontFamily: 'Rubik');
+    return TextStyle(color: appBarTextColor, fontSize: 16, fontFamily: 'rubik');
   }
 }

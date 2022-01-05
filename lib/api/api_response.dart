@@ -2,6 +2,7 @@ enum Status {
   Loading,
   Success,
   Error,
+  Unauthorized,
   Forbidden,
   Empty,
 }

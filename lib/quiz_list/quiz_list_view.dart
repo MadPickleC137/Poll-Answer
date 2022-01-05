@@ -44,7 +44,7 @@ class ListQuizView extends StatelessWidget {
                 child: Text(
                   tr('quiz-list'),
                   style: TextStyle(
-                    fontFamily: 'Rubik',
+                    fontFamily: 'rubik',
                     fontSize: 18,
                     color: appBarTextColor,
                   ),
@@ -121,7 +121,7 @@ class ListQuizView extends StatelessWidget {
                         child: Text(
                           controller.categories[index],
                           style: TextStyle(
-                              fontFamily: 'Rubik', color: categoryTextColor),
+                              fontFamily: 'rubik', color: categoryTextColor),
                         ),
                       ),
                     ),
@@ -158,7 +158,7 @@ class ListQuizView extends StatelessWidget {
                           child: Text(
                             controller.categories[index],
                             style: TextStyle(
-                                fontFamily: 'Rubik', color: categoryTextColor),
+                                fontFamily: 'rubik', color: categoryTextColor),
                           ),
                         ),
                       ),

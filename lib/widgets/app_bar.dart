@@ -14,7 +14,7 @@ PreferredSizeWidget appBar(String title, BuildContext context) {
           child: Text(
             title,
             style: TextStyle(
-              fontFamily: 'Rubik',
+              fontFamily: 'rubik',
               fontSize: 18,
               color: appBarTextColor,
             ),
