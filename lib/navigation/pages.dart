@@ -1,5 +1,8 @@
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:poll_answer/create_quiz/quiz_create_view.dart';
+import 'package:poll_answer/disconnect/disconnect_view.dart';
+import 'package:poll_answer/launch/launch_view.dart';
+import 'package:poll_answer/navigation/bottom_nav_bar.dart';
 import 'package:poll_answer/navigation/routes.dart';
 import 'package:poll_answer/profile/active/profile_active_quiz_view.dart';
 import 'package:poll_answer/profile/closed/profile_closed_quiz_view.dart';
@@ -14,6 +17,14 @@ import 'package:poll_answer/search/search_view.dart';
  */
 class Pages {
   static var list = [
+    GetPage(
+      name: Routes.LAUNCH,
+      page: () => LaunchView(),
+    ),
+    GetPage(
+      name: Routes.MAIN,
+      page: () => Navigation(),
+    ),
     GetPage(
       name: Routes.QUIZ_LIST,
       page: () => ListQuizView(),
@@ -45,6 +56,10 @@ class Pages {
     GetPage(
       name: Routes.QUIZ_SEARCH,
       page: () => SearchView(),
+    ),
+    GetPage(
+      name: Routes.DISCONNECT,
+      page: () => DisconnectView(),
     ),
   ];
 }

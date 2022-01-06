@@ -29,8 +29,7 @@ class RestApi {
   }
 
   static Future<ResponseApi<User>> login({String uuid = ""}) async {
-    String path = RouterApi.rootUrl + RouterApi.loginUrl;
-    Uri url = _url(path, uuid.isNotEmpty ? {'guid': uuid} : {});
+    Uri url = _url(RouterApi.loginUrl, uuid.isNotEmpty ? {'guid': uuid} : {});
     var response = await http.post(url);
     Status status = Status.Empty;
     User data = User();
@@ -55,8 +54,10 @@ class RestApi {
       status = Status.Success;
       List<dynamic> array = json.decode(response.body);
       for (var item in array) {
-        data.add(Category.fromJson(item));
+        data.add(Category.fromMap(item));
       }
+    } else if (response.statusCode == 401) {
+      status = Status.Unauthorized;
     } else {
       status = Status.Error;
     }
@@ -64,6 +65,21 @@ class RestApi {
   }
 
   static Future<ResponseApi<List<Question>>> getUserQuestion() async {
-    return ResponseApi(status: Status.Empty, data: []);
+    Uri url = _url(RouterApi.getUserQuestions, {});
+    var response = await http.get(url, headers: await _header);
+    Status status = Status.Empty;
+    List<Question> data = [];
+    if (response.statusCode == 200) {
+      status = Status.Success;
+      List<dynamic> array = json.decode(response.body);
+      for (var item in array) {
+        data.add(Question.fromMap(item));
+      }
+    } else if (response.statusCode == 401) {
+      status = Status.Unauthorized;
+    } else {
+      status = Status.Error;
+    }
+    return ResponseApi(status: status, data: data);
   }
 }

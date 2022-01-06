@@ -27,7 +27,7 @@ class ListQuizView extends StatelessWidget {
   PreferredSize toolBar(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     return PreferredSize(
-      preferredSize: Size(width, 50),
+      preferredSize: Size(width, 45),
       child: Container(
         height: controller.toolBarHeight.value,
         width: double.infinity,
@@ -87,7 +87,7 @@ class ListQuizView extends StatelessWidget {
   Widget categoriesWidget() {
     return Container(
       color: transparent,
-      height: 40,
+      height: 36,
       child: ScrollConfiguration(
         behavior: DisableGlowBehavior(),
         child: ListView.builder(

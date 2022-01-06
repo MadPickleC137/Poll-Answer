@@ -68,6 +68,9 @@ flutter:
       - assets/img/ic_add_quiz_selected.png
       - assets/img/ic_task_selected.png
       - assets/img/no_connect.png
+      - assets/img/ic_map.png
+      - assets/img/ic_map_en.png
+      - assets/anim/loader.json
 
   fonts:
     - family: rubik
@@ -77,11 +80,4 @@ flutter:
     - family: exo
       fonts:
         - asset: assets/fonts/exo.ttf
-          weight: 400   
-    - family: podeda
-      fonts:
-        - asset: assets/fonts/pobeda.ttf
           weight: 400 
-    - family: molot
-      fonts:
-        - asset: assets/fonts/molot.ttf

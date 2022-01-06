@@ -1,5 +1,5 @@
 class RouterApi {
-  static const String rootUrl = "https://localhost:7014/";
+  static const String rootUrl = "http://192.168.0.121:7014/";
 
   static const String getCategoriesUrl = "Category/GetCategories"; //GET
   static const String loginUrl = "Main/Login"; //POST

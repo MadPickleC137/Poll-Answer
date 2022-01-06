@@ -20,8 +20,8 @@ class DisconnectView extends StatelessWidget {
         decoration: BoxDecoration(
             gradient: LinearGradient(
           colors: [
-            Color(0xFFFFFFFF),
-            Color(0xFFDDC2F6),
+            gradientStartType2,
+            gradientEndType2,
           ],
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,

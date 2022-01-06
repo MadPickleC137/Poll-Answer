@@ -34,8 +34,8 @@ class Navigation extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
     return Container(
       width: width,
-      height: 55,
-      margin: EdgeInsets.all(8),
+      height: 52,
+      margin: EdgeInsets.all(4),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.all(
             Radius.circular(10),
@@ -75,7 +75,7 @@ class Navigation extends StatelessWidget {
             borderRadius: BorderRadius.circular(20),
           ),
         ),
-        overlayColor: MaterialStateProperty.all(Color(0xFF3CAF7D)),
+        overlayColor: MaterialStateProperty.all(rippleEffectColor),
         backgroundColor: MaterialStateProperty.all(Colors.transparent),
         shadowColor: MaterialStateProperty.all(Colors.transparent),
       ),

@@ -1,10 +1,9 @@
 import 'package:hive/hive.dart';
 import 'package:poll_answer/model/category.dart';
-import 'package:poll_answer/model/user.dart';
 
 class CategoryDto extends TypeAdapter<Category> {
   @override
-  final typeId = 0;
+  final typeId = 1;
 
   @override
   Category read(BinaryReader reader) {
