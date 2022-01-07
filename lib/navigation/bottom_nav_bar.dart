@@ -139,5 +139,5 @@ class Navigation extends StatelessWidget {
     )
   ];
 
-  final _screens = [ListQuizView(), QuizCreateView(), ProfileView()];
+  final _screens = [ListQuizView(), Container(), ProfileView()];
 }

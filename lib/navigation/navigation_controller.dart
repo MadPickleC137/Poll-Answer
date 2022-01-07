@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:poll_answer/navigation/routes.dart';
 
 class NavigationController extends GetxController {
   RxInt screenIndex = 0.obs;
@@ -18,7 +19,11 @@ class NavigationController extends GetxController {
   }
 
   void onChangeScreen(int value) {
-    screenIndex.value = value;
-    update();
+    if (value == 1) {
+      Get.toNamed(Routes.QUIZ_CREATE);
+    } else {
+      screenIndex.value = value;
+      update();
+    }
   }
 }

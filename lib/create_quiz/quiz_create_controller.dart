@@ -33,4 +33,8 @@ class CreateController extends GetxController {
       }
     }
   }
+
+  void navigateToBack() {
+    Get.back();
+  }
 }

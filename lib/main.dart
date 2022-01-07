@@ -10,7 +10,7 @@ import 'package:poll_answer/launch/launch_view.dart';
 import 'package:poll_answer/navigation/pages.dart';
 import 'package:poll_answer/theme/app_theme.dart';
 
-void main() async {
+Future<void> main() async {
   registerAdapters();
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
@@ -31,19 +31,16 @@ class PollAnswerApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: overlayStyle,
-      child: GetMaterialApp(
-        locale: context.locale,
-        supportedLocales: context.supportedLocales,
-        localizationsDelegates: context.localizationDelegates,
-        debugShowCheckedModeBanner: false,
-        initialBinding: ControllersBinding(),
-        getPages: Pages.list,
-        theme: appTheme(context),
-        title: tr('app-name'),
-        home: LaunchView(),
-      ),
+    return GetMaterialApp(
+      locale: context.locale,
+      supportedLocales: context.supportedLocales,
+      localizationsDelegates: context.localizationDelegates,
+      debugShowCheckedModeBanner: false,
+      initialBinding: ControllersBinding(),
+      getPages: Pages.list,
+      theme: appTheme(context),
+      title: tr('app-name'),
+      home: LaunchView(),
     );
   }
 }
