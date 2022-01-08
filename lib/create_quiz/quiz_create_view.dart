@@ -1,10 +1,14 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_rx/src/rx_types/rx_types.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:get/instance_manager.dart';
+import 'package:poll_answer/core/utils/scroll_mode.dart';
 import 'package:poll_answer/create_quiz/quiz_create_controller.dart';
+import 'package:poll_answer/model/answer.dart';
 import 'package:poll_answer/model/category.dart';
 import 'package:poll_answer/theme/colors.dart';
 import 'package:poll_answer/widgets/decoration_app_bar.dart';
@@ -12,12 +16,13 @@ import 'package:poll_answer/widgets/edit_text_decoration.dart';
 
 class QuizCreateView extends StatelessWidget {
   final _controller = Get.put(CreateController());
-
+  final scroller = ScrollController();
   @override
   Widget build(BuildContext context) {
     _controller.getCategories();
     return Scaffold(
       appBar: toolBar(context),
+      resizeToAvoidBottomInset: false,
       backgroundColor: Color(0xFBC0FCE9),
       body: Container(
         decoration: BoxDecoration(
@@ -30,8 +35,54 @@ class QuizCreateView extends StatelessWidget {
             ],
           ),
         ),
-        child: ListView(
-          children: body(context),
+        child: Stack(
+          children: [
+            SingleChildScrollView(
+              child: body(context),
+            ),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: TextButton(
+                style: ButtonStyle(
+                  minimumSize: MaterialStateProperty.all(Size(100, 36)),
+                  overlayColor: MaterialStateProperty.all(Color(0x6B7E78D3)),
+                  backgroundColor: MaterialStateProperty.all(Color(0xFF1A5F9D)),
+                  shadowColor: MaterialStateProperty.all(Colors.transparent),
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(10),
+                        topRight: Radius.circular(10),
+                      ),
+                    ),
+                  ),
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 32.0),
+                      child: Text(tr('add-quiz'),
+                          style: TextStyle(
+                              fontFamily: 'rubik',
+                              color: Color(0xFFF8FCFF),
+                              fontSize: 15)),
+                    ),
+                    Spacer(),
+                    Image.asset(
+                      'assets/img/ic_edit.png',
+                      width: 35,
+                      height: 32,
+                    ),
+                  ],
+                ),
+                onPressed: () {
+                  addNewQuestion();
+                },
+              ),
+            ),
+          ],
         ),
       ),
     );
@@ -90,8 +141,8 @@ class QuizCreateView extends StatelessWidget {
     );
   }
 
-  List<Widget> body(BuildContext context) {
-    return [
+  Widget body(BuildContext context) {
+    return Column(children: [
       Obx(() => Padding(
             padding: const EdgeInsets.only(left: 12.0, right: 12, top: 12),
             child: DropdownButtonFormField(
@@ -109,14 +160,12 @@ class QuizCreateView extends StatelessWidget {
               value: _controller.selectedCat.value,
               items: _controller.savedCategories.map((category) {
                 return DropdownMenuItem(
-                  child: Container(
-                    child: Text(
-                      tr(category.name),
-                      style: TextStyle(
-                          fontFamily: 'rubik',
-                          color: Color(0xFF1A5F9D),
-                          fontSize: 15),
-                    ),
+                  child: Text(
+                    tr(category.name),
+                    style: TextStyle(
+                        fontFamily: 'rubik',
+                        color: Color(0xFF1A5F9D),
+                        fontSize: 15),
                   ),
                   value: category,
                 );
@@ -188,48 +237,98 @@ class QuizCreateView extends StatelessWidget {
           ),
         ),
       ),
-      Container(
-        height: 36,
-        margin: EdgeInsets.only(top: 12.0, left: 12, right: 12),
-        child: TextFormField(
-          cursorHeight: 20,
-          maxLines: 1,
-          minLines: 1,
-          textAlign: TextAlign.left,
-          style: TextStyle(
-              fontFamily: 'rubik', color: Color(0xFF1A5F9D), fontSize: 14),
-          decoration: textDecor("", Icons.question_answer_outlined),
-          onChanged: (val) {},
-        ),
+      Obx(
+        () => variantsAddWidget(_controller.variants.value),
       ),
-      Padding(
-        padding: EdgeInsets.only(top: 4.0, left: 140, right: 140),
-        child: TextButton(
-          style: ButtonStyle(
-            minimumSize: MaterialStateProperty.all(Size(100, 100)),
-            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-              RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
-              ),
-            ),
-            overlayColor: MaterialStateProperty.all(Color(0x6B8FC58E)),
-            backgroundColor: MaterialStateProperty.all(Color(0xD8AADDCD)),
-            shadowColor: MaterialStateProperty.all(Colors.transparent),
-          ),
-          child: Icon(
-            Icons.add_photo_alternate_rounded,
+      Container(
+        margin: EdgeInsets.only(top: 10, bottom: 50),
+        child: TextButton.icon(
+          onPressed: () {
+            addNewVariant();
+          },
+          icon: Icon(
+            Icons.add_circle_outline_rounded,
             color: iconColorWhite,
             size: 35,
           ),
-          onPressed: () {
-            addPhotoVariant();
-          },
+          label: Text(tr('add-variant'),
+              style: TextStyle(
+                  fontFamily: 'rubik', color: Color(0xFF1A5F9D), fontSize: 15)),
         ),
       ),
-    ];
+    ]);
   }
 
-  void addNewVariant() {}
+  void addNewVariant() {
+    _controller.variants.add(Answer(id: -1, votedCount: 0, text: ""));
+  }
 
   void addPhotoVariant() {}
+
+  void addNewQuestion() {}
+
+  Widget variantsAddWidget(List<Answer> value) {
+    return Container(
+      padding: EdgeInsets.all(12),
+      margin: EdgeInsets.only(top: 10, bottom: 10),
+      decoration: BoxDecoration(color: Colors.black54),
+      child: Column(
+        children: value
+            .map<Widget>(
+              (answer) => Column(
+                children: [
+                  Container(
+                    margin: EdgeInsets.only(top: 10),
+                    height: 36,
+                    child: TextFormField(
+                      cursorHeight: 20,
+                      maxLines: 1,
+                      minLines: 1,
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                          fontFamily: 'rubik',
+                          color: Color(0xFF1A5F9D),
+                          fontSize: 14),
+                      decoration: textDecor(
+                          tr('prompt-variant'), Icons.question_answer_outlined),
+                      onChanged: (val) {},
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(
+                      top: 10.0,
+                    ),
+                    child: TextButton(
+                      style: ButtonStyle(
+                        minimumSize: MaterialStateProperty.all(Size(100, 100)),
+                        shape:
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                        overlayColor:
+                            MaterialStateProperty.all(Color(0x6B8FC58E)),
+                        backgroundColor:
+                            MaterialStateProperty.all(Color(0xD8AADDCD)),
+                        shadowColor:
+                            MaterialStateProperty.all(Colors.transparent),
+                      ),
+                      child: Icon(
+                        Icons.add_photo_alternate_rounded,
+                        color: iconColorWhite,
+                        size: 35,
+                      ),
+                      onPressed: () {
+                        addPhotoVariant();
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            )
+            .toList(),
+      ),
+    );
+  }
 }

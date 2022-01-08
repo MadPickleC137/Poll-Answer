@@ -13,9 +13,18 @@ class CreateController extends GetxController {
   RxString description = "".obs;
   RxList<Answer> variants = RxList.empty();
   RxList<Category> savedCategories = RxList.empty();
-
+  RxInt countAnswer = 1.obs;
   void setSelectedCategory(Category cat) {
     selectedCat.value = cat;
+  }
+
+  @override
+  void onInit() {
+    variants.add(Answer(
+      id: -1,
+      text: '',
+      votedCount: 0,
+    ));
   }
 
   @override

@@ -27,7 +27,7 @@ class ListQuizView extends StatelessWidget {
   PreferredSize toolBar(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     return PreferredSize(
-      preferredSize: Size(width, 45),
+      preferredSize: Size(width, 40),
       child: Container(
         height: controller.toolBarHeight.value,
         width: double.infinity,

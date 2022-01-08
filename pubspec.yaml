@@ -48,6 +48,9 @@ dependencies:
   # аналитика
   firebase_crashlytics: ^2.4.4
 
+  # загрузка картинок
+  image_picker: ^0.8.4+4
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -71,6 +74,7 @@ flutter:
       - assets/img/ic_task_selected.png
       - assets/img/no_connect.png
       - assets/img/ic_map.png
+      - assets/img/ic_edit.png
       - assets/img/ic_map_en.png
       - assets/anim/loader.json
 
