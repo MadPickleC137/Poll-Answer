@@ -1,6 +1,7 @@
 // ignore_for_file: unnecessary_const, prefer_const_constructors
 
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:get/get.dart';
 import 'package:poll_answer/core/utils/constants.dart';
@@ -9,6 +10,7 @@ import 'package:poll_answer/disconnect/disconnect_view.dart';
 import 'package:poll_answer/navigation/navigation_controller.dart';
 import 'package:poll_answer/profile/profile_view.dart';
 import 'package:poll_answer/quiz_list/quiz_list_view.dart';
+import 'package:poll_answer/theme/app_theme.dart';
 import 'package:poll_answer/theme/colors.dart';
 
 /**
@@ -21,6 +23,8 @@ class Navigation extends StatelessWidget {
   final controller = Get.put(NavigationController());
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(overlayStyle);
+
     return GetBuilder<NavigationController>(builder: (controller) {
       return Scaffold(
         extendBody: true,

@@ -7,16 +7,16 @@ InputDecoration textDecor(String title, IconData? icon) {
     contentPadding: EdgeInsets.all(10),
     isDense: true, // and add this line
     filled: true,
-    fillColor: Color(0xD8AADDCD),
+    fillColor: Color(0x770F1E26),
     counterText: "",
     prefixIcon: icon != null
         ? Container(
             margin: EdgeInsets.only(right: 6),
             decoration: BoxDecoration(
-              color: Color(0xFF43CEA2),
+              color: Color(0xBE0F1E26),
               borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(10),
-                bottomLeft: Radius.circular(10),
+                topLeft: Radius.circular(8),
+                bottomLeft: Radius.circular(8),
               ),
             ),
             child: Icon(
@@ -25,40 +25,40 @@ InputDecoration textDecor(String title, IconData? icon) {
             ))
         : null,
     border: OutlineInputBorder(
-      borderSide: BorderSide(color: Color(0xD8AADDCD), width: 2.0),
+      borderSide: BorderSide(color: Color(0xD86E8899), width: 1.5),
       borderRadius: BorderRadius.all(
-        Radius.circular(10),
+        Radius.circular(8),
       ),
     ),
     focusedBorder: OutlineInputBorder(
-      borderSide: BorderSide(color: Color(0xD8AADDCD), width: 2.0),
+      borderSide: BorderSide(color: Color(0xFFBFE5FF), width: 1.5),
       borderRadius: BorderRadius.all(
-        Radius.circular(10),
+        Radius.circular(8),
       ),
     ),
     enabledBorder: OutlineInputBorder(
-      borderSide: BorderSide(color: Color(0xD8AADDCD), width: 2.0),
+      borderSide: BorderSide(color: Color(0xFF6E8899), width: 1.5),
       borderRadius: BorderRadius.all(
-        Radius.circular(10),
+        Radius.circular(8),
       ),
     ),
     errorMaxLines: 1,
     focusedErrorBorder: OutlineInputBorder(
-      borderSide: BorderSide(color: Color(0xFFD82C2C), width: 2.0),
+      borderSide: BorderSide(color: Color(0xFFE44242), width: 1.5),
       borderRadius: BorderRadius.all(
-        Radius.circular(10),
+        Radius.circular(8),
       ),
     ),
     errorBorder: OutlineInputBorder(
-      borderSide: BorderSide(color: Color(0xFFD82C2C), width: 2.0),
+      borderSide: BorderSide(color: Color(0xFFE44242), width: 1.5),
       borderRadius: BorderRadius.all(
-        Radius.circular(10),
+        Radius.circular(8),
       ),
     ),
     disabledBorder: OutlineInputBorder(
-      borderSide: BorderSide(color: Color(0xFFB4B4B6), width: 2.0),
+      borderSide: BorderSide(color: Color(0xFF61686D), width: 1.5),
       borderRadius: BorderRadius.all(
-        Radius.circular(10),
+        Radius.circular(8),
       ),
     ),
     // labelText: title,
@@ -66,7 +66,7 @@ InputDecoration textDecor(String title, IconData? icon) {
       padding: EdgeInsets.only(left: 10),
       child: Text(
         title,
-        style: TextStyle(fontFamily: 'rubik', color: Color(0xFF1A5F9D)),
+        style: TextStyle(fontFamily: 'rubik', color: Color(0xFF6E8899)),
       ),
     ),
   );

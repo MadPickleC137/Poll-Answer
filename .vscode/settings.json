@@ -1,0 +1,7 @@
+{
+    "dart.embedDevTools": false,
+    "dart.showInspectorNotificationsForWidgetErrors": false,
+    "dart.shareDevToolsWithFlutter": false,
+    "dart.devToolsReuseWindows": false,
+    "dart.updateDevTools": false
+}

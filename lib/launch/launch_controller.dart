@@ -3,7 +3,6 @@ import 'package:hive/hive.dart';
 import 'package:poll_answer/api/api_rest.dart';
 import 'package:poll_answer/api/api_response.dart';
 import 'package:poll_answer/model/user.dart';
-import 'package:poll_answer/navigation/bottom_nav_bar.dart';
 import 'package:poll_answer/navigation/routes.dart';
 
 class LaunchController extends GetxController {
@@ -27,7 +26,7 @@ class LaunchController extends GetxController {
         updateWithStatus(response.status);
       }
     } catch (ex) {
-      print(ex.toString());
+      printError(info: ex.toString());
       updateWithStatus(Status.Error);
     }
   }
@@ -43,7 +42,7 @@ class LaunchController extends GetxController {
         updateWithStatus(response.status);
       }
     } catch (ex) {
-      print(ex.toString());
+      printError(info: ex.toString());
       updateWithStatus(Status.Error);
     }
   }
@@ -70,7 +69,7 @@ class LaunchController extends GetxController {
         break;
       case Status.Error:
       case Status.Forbidden:
-        Get.offNamed(Routes.DISCONNECT);
+        Get.offNamed(Routes.QUIZ_CREATE);
         break;
       default:
         break;

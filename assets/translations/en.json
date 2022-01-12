@@ -4,6 +4,8 @@
     "quiz-list": "List quiz",
     "my_quiz": "My quizs",
     "pool": "Pool",
+    "active-quiz": "Active",
+    "closed-quiz": "Closed",
     "add-quiz": "CREATE QUIZ",
     "search-hint": "Search...",
     "disconnect_description": "The service is temporarily unavailable, technical work is underway. Do everything that is possible and impossible :)",

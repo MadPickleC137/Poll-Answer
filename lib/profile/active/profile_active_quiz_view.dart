@@ -3,7 +3,10 @@ import 'package:flutter/cupertino.dart';
 class ProfileActiveQuizView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    throw UnimplementedError();
+    return Container(
+      child: Center(
+        child: Text("Active Quiestions"),
+      ),
+    );
   }
 }
