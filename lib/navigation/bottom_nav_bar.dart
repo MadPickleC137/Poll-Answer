@@ -28,6 +28,7 @@ class Navigation extends StatelessWidget {
     return GetBuilder<NavigationController>(builder: (controller) {
       return Scaffold(
         extendBody: true,
+        backgroundColor: backgroundColor,
         bottomNavigationBar: bottomNavBar(context),
         body: _screens[controller.screenIndex.value],
       );
@@ -79,7 +80,7 @@ class Navigation extends StatelessWidget {
             borderRadius: BorderRadius.circular(20),
           ),
         ),
-        overlayColor: MaterialStateProperty.all(rippleEffectColor),
+        overlayColor: MaterialStateProperty.all(bottomNavBarOverlayColor),
         backgroundColor: MaterialStateProperty.all(Colors.transparent),
         shadowColor: MaterialStateProperty.all(Colors.transparent),
       ),

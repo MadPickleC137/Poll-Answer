@@ -1,21 +1,15 @@
 import 'package:get/get.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:poll_answer/api/api_response.dart';
+import 'package:poll_answer/api/api_rest.dart';
+import 'package:poll_answer/model/category.dart';
 import 'package:poll_answer/navigation/routes.dart';
 
 class QuizListConrtoller extends GetxController {
   RxBool isSearch = false.obs;
-  RxString selectCategorie = "".obs;
+  Rx<Category> selectCategorie = Category(id: -1, name: 'All').obs;
   RxDouble toolBarHeight = 50.0.obs;
-
-  List<String> categories = <String>[
-    "Популярные",
-    "Мои",
-    "Новые",
-    "Авто",
-    "Еда",
-    "Спорт",
-    "Чувства",
-    "Мемы"
-  ];
+  RxList<Category> savedCategories = RxList.empty();
 
   @override
   void onInit() {
@@ -37,10 +31,23 @@ class QuizListConrtoller extends GetxController {
   }
 
   void changeCategory(int index) {
-    if (categories.isEmpty) {
+    if (savedCategories.isEmpty) {
       return;
     }
-    selectCategorie.value = categories[index];
+    selectCategorie.value = savedCategories[index];
     update();
+  }
+
+  void getCategories() async {
+    var cache = Hive.box('categories');
+    savedCategories.value = cache.get('list') ?? RxList.empty();
+    if (savedCategories.isEmpty) {
+      var response = await RestApi.getCategories();
+      if (response.status == Status.Success) {
+        var cache = Hive.box('categories');
+        cache.put('list', response.data);
+        savedCategories.value = response.data;
+      }
+    }
   }
 }

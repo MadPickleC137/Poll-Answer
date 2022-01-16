@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:poll_answer/core/di/bindings.dart';
 import 'package:poll_answer/core/repo/register.dart';
+import 'package:poll_answer/launch/launch_view.dart';
 import 'package:poll_answer/navigation/bottom_nav_bar.dart';
 import 'package:poll_answer/navigation/pages.dart';
 import 'package:poll_answer/theme/app_theme.dart';
@@ -23,7 +24,7 @@ Future<void> main() async {
       supportedLocales: [Locale('en'), Locale('ru')],
       fallbackLocale: const Locale('ru'),
       startLocale: const Locale('ru'),
-      child: const PollAnswerApp()));
+      child: PollAnswerApp()));
 }
 
 class PollAnswerApp extends StatelessWidget {
@@ -40,7 +41,7 @@ class PollAnswerApp extends StatelessWidget {
       getPages: Pages.list,
       theme: appTheme(context),
       title: tr('app-name'),
-      home: Navigation(),
+      home: LaunchView(),
     );
   }
 }

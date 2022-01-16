@@ -46,7 +46,7 @@ class ProfileView extends StatelessWidget {
                   style: TextStyle(
                     fontFamily: 'rubik',
                     fontSize: 18,
-                    color: appBarTextColor,
+                    color: appBarTextColor2,
                   ),
                 ),
               ),
@@ -56,7 +56,7 @@ class ProfileView extends StatelessWidget {
               padding: EdgeInsets.only(top: 14),
               alignment: Alignment.topCenter,
               child: CupertinoSlidingSegmentedControl<int>(
-                backgroundColor: whiteColor,
+                backgroundColor: slidingBackgroundColor,
                 thumbColor: startColorAppBar,
                 padding: EdgeInsets.all(4),
                 groupValue: _controller.groupValue,
@@ -83,7 +83,7 @@ class ProfileView extends StatelessWidget {
         child: Text(
           title,
           style: TextStyle(
-              fontFamily: 'rubik', fontSize: 14, color: tabBarTextColor),
+              fontFamily: 'rubik', fontSize: 14, color: appBarTextColor2),
         ));
   }
 

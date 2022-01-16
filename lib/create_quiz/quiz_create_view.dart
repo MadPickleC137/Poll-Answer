@@ -2,11 +2,14 @@
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:get/instance_manager.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:poll_answer/create_quiz/quiz_create_controller.dart';
 import 'package:poll_answer/model/answer.dart';
 import 'package:poll_answer/model/category.dart';
+import 'package:poll_answer/theme/app_theme.dart';
 import 'package:poll_answer/theme/colors.dart';
 import 'package:poll_answer/widgets/decoration_app_bar.dart';
 import 'package:poll_answer/widgets/edit_text_decoration.dart';
@@ -15,101 +18,86 @@ class QuizCreateView extends StatelessWidget {
   final controller = Get.put(CreateController());
   @override
   Widget build(BuildContext context) {
-    // controller.getCategories();
+    controller.getCategories();
     return Scaffold(
       appBar: toolBar(context),
       resizeToAvoidBottomInset: true,
-      backgroundColor: Color(0xFF2A3740),
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Color(0xFF2A3740),
-              Color(0xFF2A3740),
-            ],
-          ),
+      backgroundColor: backgroundColor,
+      body: bodyWidget(context),
+    );
+  }
+
+  Widget bodyWidget(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [
+            backgroundColor,
+            backgroundColor,
+          ],
         ),
-        child: Stack(
-          children: [
-            SingleChildScrollView(
-              child: body(context),
-            ),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: Container(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [
-                      Color(0xE18CB5E4),
-                      Color(0xD7BFE5FF),
-                      Color(0xCCB5E1FF),
-                    ],
-                  ),
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(10),
-                    topRight: Radius.circular(10),
-                  ),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Color(0x881FA4FF),
-                      offset: Offset(2, 2),
-                      blurRadius: 15,
-                      spreadRadius: 1,
+      ),
+      child: Stack(
+        children: [
+          SingleChildScrollView(
+            child: body(context),
+          ),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Container(
+              decoration: BoxDecoration(
+                gradient: buttonGradientType1,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(10),
+                  topRight: Radius.circular(10),
+                ),
+                boxShadow: buttonShadowType1,
+              ),
+              child: TextButton(
+                style: ButtonStyle(
+                  minimumSize: MaterialStateProperty.all(Size(100, 36)),
+                  overlayColor: MaterialStateProperty.all(overlayButtonType1),
+                  backgroundColor:
+                      MaterialStateProperty.all(Colors.transparent),
+                  shadowColor: MaterialStateProperty.all(Colors.transparent),
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(10),
+                        topRight: Radius.circular(10),
+                      ),
                     ),
-                    BoxShadow(
-                      color: Color(0xFF1FA4FF),
-                      offset: Offset(-4, -4),
-                      blurRadius: 16,
-                      spreadRadius: 1,
+                  ),
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 32.0),
+                      child: Text(tr('add-quiz'),
+                          style: TextStyle(
+                              fontFamily: 'rubik',
+                              color: buttonTextType1,
+                              fontSize: 15)),
+                    ),
+                    Spacer(),
+                    Image.asset(
+                      'assets/img/ic_edit.png',
+                      width: 35,
+                      height: 32,
                     ),
                   ],
                 ),
-                child: TextButton(
-                  style: ButtonStyle(
-                    minimumSize: MaterialStateProperty.all(Size(100, 36)),
-                    overlayColor: MaterialStateProperty.all(Color(0xFF1FA4FF)),
-                    backgroundColor:
-                        MaterialStateProperty.all(Colors.transparent),
-                    shadowColor: MaterialStateProperty.all(Colors.transparent),
-                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                      RoundedRectangleBorder(
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(10),
-                          topRight: Radius.circular(10),
-                        ),
-                      ),
-                    ),
-                  ),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Spacer(),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 32.0),
-                        child: Text(tr('add-quiz'),
-                            style: TextStyle(
-                                fontFamily: 'rubik',
-                                color: Color(0xFFF8FCFF),
-                                fontSize: 15)),
-                      ),
-                      Spacer(),
-                      Image.asset(
-                        'assets/img/ic_edit.png',
-                        width: 35,
-                        height: 32,
-                      ),
-                    ],
-                  ),
-                  onPressed: () {
-                    addNewQuestion();
-                  },
-                ),
+                onPressed: () {
+                  addNewQuestion();
+                },
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -133,13 +121,13 @@ class QuizCreateView extends StatelessWidget {
                     borderRadius: BorderRadius.circular(20),
                   ),
                 ),
-                overlayColor: MaterialStateProperty.all(Color(0x6BBCD8BB)),
+                overlayColor: MaterialStateProperty.all(appBarButtonOverlay),
                 backgroundColor: MaterialStateProperty.all(Colors.transparent),
                 shadowColor: MaterialStateProperty.all(Colors.transparent),
               ),
               child: Icon(
                 Icons.arrow_back_ios_new_rounded,
-                color: Color(0xFFBFE5FF),
+                color: appBarIconColor,
               ),
               onPressed: () {
                 controller.navigateToBack();
@@ -155,7 +143,7 @@ class QuizCreateView extends StatelessWidget {
                   style: TextStyle(
                     fontFamily: 'rubik',
                     fontSize: 18,
-                    color: Color(0xFFBFE5FF),
+                    color: appBarTextColor2,
                   ),
                 ),
               ),
@@ -177,7 +165,7 @@ class QuizCreateView extends StatelessWidget {
               tr('category'),
               style: TextStyle(color: categoryTextColor),
             ),
-            dropdownColor: Color(0x33192229),
+            dropdownColor: darkBackground,
             menuMaxHeight: 450,
             icon: Icon(Icons.arrow_drop_down_circle),
             decoration: textDecor(tr('category'), Icons.category_rounded),
@@ -234,30 +222,11 @@ class QuizCreateView extends StatelessWidget {
         padding: EdgeInsets.all(4),
         width: double.infinity,
         decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                Color(0xFF8CB5E4),
-                Color(0xFFBFE5FF),
-                Color(0xFFB5E1FF),
-              ],
-            ),
+            gradient: buttonGradientType1,
             borderRadius: BorderRadius.all(
               Radius.circular(4),
             ),
-            boxShadow: [
-              BoxShadow(
-                color: Color(0x881FA4FF),
-                offset: Offset(2, 2),
-                blurRadius: 15,
-                spreadRadius: 1,
-              ),
-              BoxShadow(
-                color: Color(0xFF1FA4FF),
-                offset: Offset(-4, -4),
-                blurRadius: 16,
-                spreadRadius: 1,
-              ),
-            ]),
+            boxShadow: buttonShadowType1),
         child: Center(
           child: Text(
             tr('variants'),
@@ -277,13 +246,13 @@ class QuizCreateView extends StatelessWidget {
                   },
                   icon: Icon(
                     Icons.add_circle_outline_rounded,
-                    color: Color(0xFF8CB5E4),
+                    color: iconColorType2,
                     size: 35,
                   ),
                   label: Text(tr('add-variant'),
                       style: TextStyle(
                           fontFamily: 'rubik',
-                          color: Color(0xFFBFE5FF),
+                          color: textColorType2,
                           fontSize: 15)),
                 ),
               )
@@ -293,8 +262,6 @@ class QuizCreateView extends StatelessWidget {
       )
     ]);
   }
-
-  void addPhotoVariant() {}
 
   void addNewQuestion() {}
 
@@ -306,8 +273,8 @@ class QuizCreateView extends StatelessWidget {
       decoration: BoxDecoration(
           gradient: LinearGradient(
         colors: [
-          Color(0x33192229),
-          Color(0x33192229),
+          darkBackground2,
+          darkBackground2,
         ],
       )),
       child: ListView.builder(
@@ -347,7 +314,7 @@ class QuizCreateView extends StatelessWidget {
                             ),
                           ),
                           overlayColor:
-                              MaterialStateProperty.all(Color(0xC7B9906E)),
+                              MaterialStateProperty.all(overlayButtonType2),
                           backgroundColor:
                               MaterialStateProperty.all(Colors.transparent),
                           shadowColor:
@@ -355,7 +322,7 @@ class QuizCreateView extends StatelessWidget {
                         ),
                         child: Icon(
                           Icons.delete_outline_rounded,
-                          color: Color(0xFFBFE5FF),
+                          color: iconColorType2,
                         ),
                         onPressed: () {
                           controller.deleteItemVariant(values[index].id);
@@ -374,12 +341,10 @@ class QuizCreateView extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10),
                         ),
                       ),
-                      overlayColor: MaterialStateProperty.all(
-                        Color(0xC7B5E1FF),
-                      ),
-                      backgroundColor: MaterialStateProperty.all(
-                        Color(0xDE8CB5E4),
-                      ),
+                      overlayColor:
+                          MaterialStateProperty.all(overlayButtonType3),
+                      backgroundColor:
+                          MaterialStateProperty.all(buttonColorType3),
                       shadowColor:
                           MaterialStateProperty.all(Colors.transparent),
                     ),
@@ -389,7 +354,7 @@ class QuizCreateView extends StatelessWidget {
                       size: 35,
                     ),
                     onPressed: () {
-                      addPhotoVariant();
+                      addPhotoVariant(context);
                     },
                   ),
                 ),
@@ -397,17 +362,70 @@ class QuizCreateView extends StatelessWidget {
                   margin: EdgeInsets.only(top: 5),
                   width: double.infinity,
                   height: 0.5,
-                  color: Color(0xC7B5E1FF),
+                  color: dividerColor,
                 )
               ],
             );
           }),
     );
   }
+
+  void addPhotoVariant(BuildContext context) {
+    Get.bottomSheet(
+      Container(
+        height: 140,
+        color: darkBackground,
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              TextButton.icon(
+                onPressed: () {
+                  controller.pickPhoto(ImageSource.gallery);
+                },
+                icon: Icon(
+                  Icons.photo_library_rounded,
+                  color: iconColorType2,
+                  size: 35,
+                ),
+                label: Container(
+                  padding: EdgeInsets.only(left: 10, right: 10),
+                  width: double.infinity,
+                  child: Text(tr('from-galery'),
+                      style: TextStyle(
+                          fontFamily: 'rubik',
+                          color: textColorType2,
+                          fontSize: 15)),
+                ),
+              ),
+              TextButton.icon(
+                onPressed: () {},
+                icon: Icon(
+                  Icons.camera_alt_rounded,
+                  color: iconColorType2,
+                  size: 35,
+                ),
+                label: Container(
+                  padding: EdgeInsets.only(left: 10, right: 10),
+                  width: double.infinity,
+                  child: Text(tr('from-camera'),
+                      style: TextStyle(
+                          fontFamily: 'rubik',
+                          color: textColorType2,
+                          fontSize: 15)),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
 }
 
 var textStyle14 =
-    TextStyle(fontFamily: 'rubik', color: Color(0xFFBFCEDB), fontSize: 14);
+    TextStyle(fontFamily: 'rubik', color: textColorType3, fontSize: 14);
 
 var textStyle15 =
-    TextStyle(fontFamily: 'rubik', color: Color(0xFFBFCEDB), fontSize: 15);
+    TextStyle(fontFamily: 'rubik', color: textColorType3, fontSize: 15);

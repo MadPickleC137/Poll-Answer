@@ -7,6 +7,7 @@ import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/state_manager.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 import 'package:poll_answer/core/utils/scroll_mode.dart';
+import 'package:poll_answer/model/category.dart';
 import 'package:poll_answer/quiz_list/quiz_list_controller.dart';
 import 'package:poll_answer/theme/colors.dart';
 import 'package:poll_answer/widgets/decoration_app_bar.dart';
@@ -16,8 +17,10 @@ class ListQuizView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    controller.getCategories();
     return GetBuilder<QuizListConrtoller>(builder: (controller) {
       return Scaffold(
+        backgroundColor: backgroundColor,
         appBar: toolBar(context),
         body: body(context),
       );
@@ -74,7 +77,6 @@ class ListQuizView extends StatelessWidget {
   }
 
   Widget body(BuildContext context) {
-    //категории
     return Column(
       mainAxisSize: MainAxisSize.max,
       children: [
@@ -85,98 +87,91 @@ class ListQuizView extends StatelessWidget {
   }
 
   Widget categoriesWidget() {
-    return Container(
-      color: transparent,
-      height: 36,
-      child: ScrollConfiguration(
-        behavior: DisableGlowBehavior(),
-        child: ListView.builder(
-            scrollDirection: Axis.horizontal,
-            itemCount: controller.categories.length,
-            itemBuilder: (context, index) {
-              if (controller.selectCategorie.value ==
-                  controller.categories[index]) {
-                return Stack(
-                  children: <Widget>[
-                    Positioned.fill(
-                      child: Container(
-                        padding: EdgeInsets.all(14),
-                        margin: EdgeInsets.all(3),
-                        decoration: const BoxDecoration(
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(20),
+    return Obx(
+      () => Container(
+        color: transparent,
+        padding: EdgeInsets.only(top: 3, bottom: 3),
+        height: 42,
+        child: ScrollConfiguration(
+          behavior: DisableGlowBehavior(),
+          child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: controller.savedCategories.length,
+              itemBuilder: (context, index) {
+                if (controller.savedCategories[index].id != -1) {
+                  if (controller.selectCategorie.value ==
+                      controller.savedCategories[index]) {
+                    return Container(
+                      padding: EdgeInsets.all(2.0),
+                      child: TextButton(
+                        style: ButtonStyle(
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20),
                             ),
-                            gradient: LinearGradient(colors: [
-                              categoryBackgroundStartColor,
-                              categoryBackgroundEndColor,
-                            ])),
-                      ),
-                    ),
-                    TextButton(
-                      style: TextButton.styleFrom(
-                        primary: Colors.white,
-                      ),
-                      onPressed: () {},
-                      child: Center(
+                          ),
+                          overlayColor:
+                              MaterialStateProperty.all(overlayButtonType3),
+                          backgroundColor:
+                              MaterialStateProperty.all(buttonColorType3),
+                          shadowColor:
+                              MaterialStateProperty.all(Colors.transparent),
+                        ),
                         child: Text(
-                          controller.categories[index],
+                          tr(controller.savedCategories[index].name),
                           style: TextStyle(
-                              fontFamily: 'rubik', color: categoryTextColor),
+                              fontSize: 12,
+                              fontFamily: 'rubik',
+                              color: categoryTextColor),
                         ),
+                        onPressed: () {},
                       ),
-                    ),
-                  ],
-                );
-              } else {
-                return ClipRRect(
-                  borderRadius: BorderRadius.circular(20),
-                  child: Stack(
-                    children: <Widget>[
-                      Positioned.fill(
-                        child: Container(
-                          padding: EdgeInsets.all(14),
-                          margin: EdgeInsets.all(3),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(20),
-                              ),
-                              color: transparent,
-                              border: Border.all(
-                                width: 2,
-                                color: categoryBackgroundEndColor,
-                              )),
+                    );
+                  } else {
+                    return Padding(
+                      padding: EdgeInsets.all(2.0),
+                      child: TextButton(
+                        style: ButtonStyle(
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                          ),
+                          backgroundColor:
+                              MaterialStateProperty.all(buttonColorType4),
+                          shadowColor:
+                              MaterialStateProperty.all(Colors.transparent),
                         ),
-                      ),
-                      TextButton(
-                        style: TextButton.styleFrom(
-                          primary: rippleEffectColor,
+                        child: Text(
+                          tr(controller.savedCategories[index].name),
+                          style: TextStyle(
+                              fontSize: 12,
+                              fontFamily: 'rubik',
+                              color: categoryTextColor),
                         ),
                         onPressed: () {
                           controller.changeCategory(index);
                         },
-                        child: Center(
-                          child: Text(
-                            controller.categories[index],
-                            style: TextStyle(
-                                fontFamily: 'rubik', color: categoryTextColor),
-                          ),
-                        ),
                       ),
-                    ],
-                  ),
-                );
-              }
-            }),
+                    );
+                  }
+                } else {
+                  return Text("");
+                }
+              }),
+        ),
       ),
     );
   }
 
-  Widget findedQuizes(String value) {
+  Widget findedQuizes(Category value) {
     return FadeInDown(
       child: Container(
         child: Center(
           child: Text(
-            value,
+            value.name,
           ),
         ),
       ),

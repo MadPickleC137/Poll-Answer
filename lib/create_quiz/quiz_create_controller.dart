@@ -5,6 +5,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:poll_answer/api/api_response.dart';
 import 'package:poll_answer/api/api_rest.dart';
 import 'package:poll_answer/model/answer.dart';
@@ -19,6 +20,7 @@ class CreateController extends GetxController {
   RxInt countAnswer = 1.obs;
 
   Map<int, TextEditingController> editTextVariants = {};
+  final ImagePicker _picker = ImagePicker();
 
   void setSelectedCategory(Category cat) {
     selectedCat.value = cat;
@@ -61,6 +63,13 @@ class CreateController extends GetxController {
     );
     if (findVariant != null) {
       variants.removeWhere((variant) => variant.id == id);
+    }
+  }
+
+  Future<void> pickPhoto(ImageSource source) async {
+    var response = await _picker.pickImage(source: source);
+    if (response == null) {
+      return;
     }
   }
 }
