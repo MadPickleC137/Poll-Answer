@@ -82,4 +82,21 @@ class RestApi {
     }
     return ResponseApi(status: status, data: data);
   }
+
+  static Future<ResponseApi> createQuestion(Question question) async {
+    Uri url = _url(RouterApi.addQuestionUrl, {});
+    var body = question.toJsonForSend();
+    print(body);
+    var response = await http.post(url, headers: await _header, body: body);
+    Status status = Status.Empty;
+    print(response.body);
+    if (response.statusCode == 200 || response.statusCode == 204) {
+      status = Status.Success;
+    } else if (response.statusCode == 401) {
+      status = Status.Unauthorized;
+    } else {
+      status = Status.Error;
+    }
+    return ResponseApi(status: status, data: null);
+  }
 }

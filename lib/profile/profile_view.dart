@@ -18,7 +18,7 @@ class ProfileView extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<ProfileController>(builder: (controller) {
       return Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: backgroundColor,
         appBar: appBar(context),
         body: _segmentsPages[controller.groupValue],
       );
@@ -87,7 +87,7 @@ class ProfileView extends StatelessWidget {
         ));
   }
 
-  List<Widget> _segmentsPages = [
+  final List<Widget> _segmentsPages = [
     ProfileActiveQuizView(),
     ProfileClosedQuizView(),
   ];

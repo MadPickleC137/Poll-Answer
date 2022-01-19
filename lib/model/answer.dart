@@ -36,6 +36,13 @@ class Answer {
     };
   }
 
+  Map<String, dynamic> toMapForSend() {
+    return {
+      'text': text,
+      'image': image,
+    };
+  }
+
   factory Answer.fromMap(Map<String, dynamic> map) {
     return Answer(
       id: map['id']?.toInt() ?? 0,

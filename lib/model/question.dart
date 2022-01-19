@@ -32,6 +32,15 @@ class Question {
     };
   }
 
+  Map<String, dynamic> toMapForSend() {
+    return {
+      'categoryId': categoryId,
+      'title': title,
+      'description': description,
+      'answers': answerVariants?.map((x) => x.toMapForSend()).toList(),
+    };
+  }
+
   factory Question.fromMap(Map<String, dynamic> map) {
     return Question(
       id: map['id']?.toInt() ?? 0,
@@ -47,6 +56,9 @@ class Question {
   }
 
   String toJson() => json.encode(toMap());
+
+  String toJsonForSend() => json.encode(toMapForSend());
+
   factory Question.fromJson(String source) =>
       Question.fromMap(json.decode(source));
 

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:poll_answer/launch/launch_controller.dart';
+import 'package:poll_answer/theme/colors.dart';
 
 class LaunchView extends StatelessWidget {
   final _controller = Get.put(LaunchController());
@@ -12,7 +13,7 @@ class LaunchView extends StatelessWidget {
   final textStyle = TextStyle(
     fontFamily: 'rubik',
     fontSize: 48,
-    color: Colors.white,
+    color: textColorType3,
     letterSpacing: 1.4,
   );
   @override
@@ -22,8 +23,8 @@ class LaunchView extends StatelessWidget {
         padding: EdgeInsets.only(top: 200),
         decoration: BoxDecoration(
           gradient: LinearGradient(colors: [
-            Color(0xFF43CEA2),
-            Color(0xFF185A9D),
+            startColorAppBar,
+            bottomNavBarColor,
           ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
         ),
         child: Column(
