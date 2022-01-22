@@ -20,6 +20,7 @@ dependencies:
   material_floating_search_bar: ^0.3.6
   animate_do: ^2.0.0
   lottie: ^1.2.1
+  shimmer: ^2.0.0
   # DI, навигация, MVC
   get: ^4.6.1
 

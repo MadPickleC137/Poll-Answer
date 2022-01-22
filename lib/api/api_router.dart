@@ -10,6 +10,8 @@ class RouterApi {
   static const String closeQuestionUrl = "api/Question/CloseQuestion"; //PUT
 
   static const String getAllQuestions = "api/Question/GetAllQuestions"; //GET
+  static const String getBundleQuestions =
+      "api/Question/GetQuestionBundle"; //GET
   static const String getUserQuestions = "api/Question/GetUserQuestions"; //GET
   static const String getInfoQuestions = "api/Question/GetQuestionInfo"; //GET
   static const String putVote = "api/Question/Vote"; //PUT

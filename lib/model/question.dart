@@ -47,9 +47,8 @@ class Question {
       categoryId: map['categoryId']?.toInt(),
       title: map['title'],
       description: map['description'],
-      answerVariants: map['answerVariants'] != null
-          ? List<Answer>.from(
-              map['answerVariants']?.map((x) => Answer.fromMap(x)))
+      answerVariants: map['answers'] != null
+          ? List<Answer>.from(map['answers']?.map((x) => Answer.fromMap(x)))
           : null,
       isPollCompleted: map['isPollCompleted'] ?? false,
     );

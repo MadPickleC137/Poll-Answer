@@ -1,3 +1,5 @@
+import 'dart:convert';
+import 'dart:io';
 import 'dart:ui';
 
 import 'package:flutter/foundation.dart';
@@ -14,4 +16,10 @@ bool isDebugMode() {
   } else {
     return true;
   }
+}
+
+Future<File> parseImage(String base64Image) async {
+  var decodedImage = base64.decode(base64Image);
+  File fileImage = File.fromRawPath(decodedImage);
+  return fileImage;
 }

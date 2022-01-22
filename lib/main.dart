@@ -7,7 +7,6 @@ import 'package:get/get.dart';
 import 'package:poll_answer/core/di/bindings.dart';
 import 'package:poll_answer/core/repo/register.dart';
 import 'package:poll_answer/launch/launch_view.dart';
-import 'package:poll_answer/navigation/bottom_nav_bar.dart';
 import 'package:poll_answer/navigation/pages.dart';
 import 'package:poll_answer/theme/app_theme.dart';
 

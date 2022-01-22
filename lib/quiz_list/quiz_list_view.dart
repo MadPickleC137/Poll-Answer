@@ -6,8 +6,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/state_manager.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
+import 'package:poll_answer/api/api_response.dart';
 import 'package:poll_answer/core/utils/scroll_mode.dart';
 import 'package:poll_answer/model/category.dart';
+import 'package:poll_answer/model/question.dart';
 import 'package:poll_answer/quiz_list/quiz_list_controller.dart';
 import 'package:poll_answer/theme/colors.dart';
 import 'package:poll_answer/widgets/decoration_app_bar.dart';
@@ -17,7 +19,6 @@ class ListQuizView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    controller.getCategories();
     return GetBuilder<QuizListConrtoller>(builder: (controller) {
       return Scaffold(
         backgroundColor: backgroundColor,
@@ -32,7 +33,7 @@ class ListQuizView extends StatelessWidget {
     return PreferredSize(
       preferredSize: Size(width, 40),
       child: Container(
-        height: controller.toolBarHeight.value,
+        height: controller.toolBarHeight,
         width: double.infinity,
         margin: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
         decoration: decorationAppBar(),
@@ -81,7 +82,7 @@ class ListQuizView extends StatelessWidget {
       mainAxisSize: MainAxisSize.max,
       children: [
         categoriesWidget(),
-        Obx(() => findedQuizes(controller.selectCategorie.value))
+        findedQuizes(),
       ],
     );
   }
@@ -166,15 +167,32 @@ class ListQuizView extends StatelessWidget {
     );
   }
 
-  Widget findedQuizes(Category value) {
+  Widget findedQuizes() {
     return FadeInDown(
-      child: Container(
-        child: Center(
-          child: Text(
-            value.name,
-          ),
-        ),
+      child: Obx(
+        () => controller.statusQuestion.value == Status.Loading
+            ? Padding(
+                padding: const EdgeInsets.only(top: 150.0),
+                child: Center(
+                  child: CircularProgressIndicator(),
+                ),
+              )
+            : showListQuestion(controller.questions.value),
       ),
     );
+  }
+
+  Widget showListQuestion(List<Question> value) {
+    return ListView.builder(
+        shrinkWrap: true,
+        physics: NeverScrollableScrollPhysics(),
+        itemCount: value.length,
+        itemBuilder: (context, index) {
+          return Container(
+            child: Center(
+              child: Text(value[index].description.toString()),
+            ),
+          );
+        });
   }
 }
