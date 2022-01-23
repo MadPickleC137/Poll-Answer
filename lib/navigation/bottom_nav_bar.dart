@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:get/get.dart';
 import 'package:poll_answer/core/utils/constants.dart';
+import 'package:poll_answer/core/utils/utils.dart';
 import 'package:poll_answer/create_quiz/quiz_create_view.dart';
 import 'package:poll_answer/disconnect/disconnect_view.dart';
 import 'package:poll_answer/navigation/navigation_controller.dart';
@@ -36,10 +37,9 @@ class Navigation extends StatelessWidget {
   }
 
   Widget bottomNavBar(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
     return Container(
-      width: width,
-      height: 52,
+      width: getScreenWidth(context),
+      height: bottomNavBarHeight,
       margin: EdgeInsets.all(4),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.all(

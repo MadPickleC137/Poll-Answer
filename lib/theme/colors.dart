@@ -64,6 +64,8 @@ const Color appBarTextColor2 = Color(0xFFBFE5FF);
 const Color iconColorType2 = Color(0xFF8CB5E4);
 const Color textColorType2 = Color(0xFFBFE5FF);
 const Color textColorType3 = Color(0xFF98B2C9);
+const Color textColorType4 = Color(0xA4FFFFFF);
+
 const Color darkBackground = Color(0xFF192229);
 const Color darkBackground2 = Color(0x33192229);
 // End QuizCreateView

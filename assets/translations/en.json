@@ -31,5 +31,7 @@
     "People": "People",
     "Other": "Other",
     "from-galery": "From galery",
+    "error_request": "Sorry, undefinded error :(",
+    "empty-category": "There are no polls in the selected category",
     "from-camera": "Create from camera"
 }

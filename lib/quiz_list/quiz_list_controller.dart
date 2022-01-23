@@ -1,5 +1,4 @@
-import 'dart:math';
-
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:poll_answer/api/api_response.dart';
@@ -13,8 +12,9 @@ class QuizListConrtoller extends GetxController {
   Rx<Category> selectCategorie = Category(id: -1, name: 'All').obs;
   double toolBarHeight = 50.0;
   RxList<Category> savedCategories = RxList.empty();
-  RxList<Question> questions = RxList.empty();
+  List<Question> questions = [];
   Rx<Status> statusQuestion = Status.Loading.obs;
+  PageController pageController = PageController();
 
   @override
   void onInit() {
@@ -43,9 +43,10 @@ class QuizListConrtoller extends GetxController {
     }
     selectCategorie.value = savedCategories[index];
     update();
+    getQuestionsByCategory();
   }
 
-  void getCategories() async {
+  Future<void> getCategories() async {
     var cache = Hive.box('categories');
     savedCategories.value = cache.get('list') ?? RxList.empty();
     if (savedCategories.isEmpty) {
@@ -58,7 +59,11 @@ class QuizListConrtoller extends GetxController {
     }
   }
 
-  void getDefaultQuestion() async {
+  Future<void> getQuestionsByCategory() async {
+    onRefreshQuestion();
+  }
+
+  Future<void> getDefaultQuestion() async {
     statusQuestion.value = Status.Loading;
     selectCategorie.value = savedCategories.first;
     var response = await RestApi.getBundleQuestions(10, null, null);
@@ -67,5 +72,17 @@ class QuizListConrtoller extends GetxController {
       questions.addAll(response.data);
     }
     statusQuestion.value = response.status;
+  }
+
+  Future<void> onRefreshQuestion() async {
+    statusQuestion.value = Status.Loading;
+    int? categoryId =
+        selectCategorie.value.id == 1 ? null : selectCategorie.value.id;
+    var response = await RestApi.getBundleQuestions(10, null, categoryId);
+    if (response.status == Status.Success) {
+      questions.clear();
+      questions.addAll(response.data);
+    }
+    statusQuestion.value = questions.isEmpty ? Status.Empty : response.status;
   }
 }

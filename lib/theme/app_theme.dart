@@ -26,3 +26,37 @@ const List<BoxShadow> buttonShadowType1 = [
     spreadRadius: 0.5,
   ),
 ];
+
+const List<BoxShadow> questionBodyShadow = [
+  BoxShadow(
+    color: bottomNavBarColor,
+    offset: Offset(4, 4),
+    blurRadius: 30,
+    spreadRadius: 0.5,
+  ),
+  BoxShadow(
+    color: bottomNavBarColor,
+    offset: Offset(-4, -4),
+    blurRadius: 30,
+    spreadRadius: 0.5,
+  ),
+];
+
+const TextStyle titleTextStyle = TextStyle(
+    fontFamily: 'rubik',
+    letterSpacing: 1.0,
+    fontSize: 16,
+    color: textColorType3);
+
+const TextStyle messageTextStyle = TextStyle(
+    fontFamily: 'rubik',
+    fontSize: 14,
+    wordSpacing: 2.4,
+    letterSpacing: 1.0,
+    color: textColorType3);
+
+const TextStyle normalTextStyle = TextStyle(
+  fontFamily: 'rubik',
+  fontSize: 14,
+  color: textColorType4,
+);

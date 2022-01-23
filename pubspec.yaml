@@ -21,6 +21,8 @@ dependencies:
   animate_do: ^2.0.0
   lottie: ^1.2.1
   shimmer: ^2.0.0
+  carousel_slider: ^4.0.0
+
   # DI, навигация, MVC
   get: ^4.6.1
 
@@ -33,6 +35,7 @@ dependencies:
   # кэширование
   hive: ^2.0.5
   hive_flutter: ^1.1.0
+  path_provider: ^2.0.8
   
   # шрифты
   google_fonts: ^2.1.1

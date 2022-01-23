@@ -3,7 +3,7 @@ import 'package:poll_answer/model/question.dart';
 
 class QuestionDto extends TypeAdapter<Question> {
   @override
-  final typeId = 2;
+  final typeId = 4;
 
   @override
   Question read(BinaryReader reader) {
