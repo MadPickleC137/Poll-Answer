@@ -8,7 +8,6 @@ import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:get/instance_manager.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:poll_answer/core/utils/views.dart';
 import 'package:poll_answer/create_quiz/quiz_create_controller.dart';
 import 'package:poll_answer/model/answer.dart';
 import 'package:poll_answer/model/category.dart';
@@ -16,6 +15,7 @@ import 'package:poll_answer/theme/app_theme.dart';
 import 'package:poll_answer/theme/colors.dart';
 import 'package:poll_answer/widgets/button_style.dart';
 import 'package:poll_answer/widgets/decoration_app_bar.dart';
+import 'package:poll_answer/widgets/divider.dart';
 import 'package:poll_answer/widgets/edit_text_decoration.dart';
 
 class QuizCreateView extends StatelessWidget {

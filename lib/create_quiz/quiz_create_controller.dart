@@ -70,7 +70,7 @@ class CreateController extends GetxController {
 
   Future<void> pickPhoto(ImageSource source, int index) async {
     final XFile? image = await _picker.pickImage(
-        source: source, maxHeight: 720, maxWidth: 1280, imageQuality: 80);
+        source: source, maxHeight: 1080, maxWidth: 1920, imageQuality: 90);
     if (image == null) {
       return;
     } else {

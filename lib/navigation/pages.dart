@@ -1,5 +1,6 @@
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:poll_answer/create_quiz/quiz_create_view.dart';
+import 'package:poll_answer/detail/detail_view.dart';
 import 'package:poll_answer/disconnect/disconnect_view.dart';
 import 'package:poll_answer/launch/launch_view.dart';
 import 'package:poll_answer/navigation/bottom_nav_bar.dart';
@@ -44,6 +45,10 @@ class Pages {
     GetPage(
       name: Routes.QUIZ_CREATE,
       page: () => QuizCreateView(),
+    ),
+    GetPage(
+      name: Routes.QUIZ_DETAIL,
+      page: () => QuizDetailView(),
     ),
     GetPage(
       name: Routes.QUIZ_STATISTIC,

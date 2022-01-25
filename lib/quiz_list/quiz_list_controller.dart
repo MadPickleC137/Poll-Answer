@@ -85,4 +85,8 @@ class QuizListConrtoller extends GetxController {
     }
     statusQuestion.value = questions.isEmpty ? Status.Empty : response.status;
   }
+
+  void navigateToDetailQuestion(Question question) {
+    Get.toNamed(Routes.QUIZ_DETAIL, arguments: question);
+  }
 }

@@ -7,6 +7,7 @@ class Routes {
   static const String QUIZ_LIST = "/main/quiz/list";
   static const String QUIZ_CREATE = "/main/quiz/create";
   static const String QUIZ_CLOSING = "/main/quiz/closing";
+  static const String QUIZ_DETAIL = "/main/quiz/detail";
   static const String QUIZ_STATISTIC = "/main/quiz/statistic";
   static const String QUIZ_SEARCH = "/main/quiz/search";
 

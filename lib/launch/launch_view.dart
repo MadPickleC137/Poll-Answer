@@ -12,7 +12,7 @@ class LaunchView extends StatelessWidget {
 
   final textStyle = TextStyle(
     fontFamily: 'rubik',
-    fontSize: 48,
+    fontSize: 42,
     color: textColorType3,
     letterSpacing: 1.4,
   );
@@ -56,10 +56,6 @@ class LaunchView extends StatelessWidget {
 
   List<Widget> get ruTitle {
     return [
-      Text(
-        "B",
-        style: textStyle,
-      ),
       FadeIn(
         child: Image.asset(
           'assets/img/ic_map.png',
@@ -68,7 +64,7 @@ class LaunchView extends StatelessWidget {
         ),
       ),
       Text(
-        "ПРОС",
+        "ПРОСНИК",
         style: textStyle,
       ),
     ];
@@ -76,6 +72,10 @@ class LaunchView extends StatelessWidget {
 
   List<Widget> get enTitle {
     return [
+      Text(
+        "IN",
+        style: textStyle,
+      ),
       FadeIn(
         child: Image.asset(
           'assets/img/ic_map_en.png',
@@ -84,7 +84,7 @@ class LaunchView extends StatelessWidget {
         ),
       ),
       Text(
-        "UESTION",
+        "UIRER",
         style: textStyle,
       ),
     ];

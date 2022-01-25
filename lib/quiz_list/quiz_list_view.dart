@@ -19,6 +19,7 @@ import 'package:poll_answer/model/question.dart';
 import 'package:poll_answer/quiz_list/quiz_list_controller.dart';
 import 'package:poll_answer/theme/app_theme.dart';
 import 'package:poll_answer/theme/colors.dart';
+import 'package:poll_answer/widgets/button_style.dart';
 import 'package:poll_answer/widgets/decoration_app_bar.dart';
 import 'package:poll_answer/widgets/divider.dart';
 
@@ -241,6 +242,7 @@ class ListQuizView extends StatelessWidget {
     );
   }
 
+  // виджет список опросов
   Widget questionsWidget(List<Question> questions) {
     return Container(
       margin: marginMainContainer,
@@ -251,12 +253,14 @@ class ListQuizView extends StatelessWidget {
         controller: controller.pageController,
         itemBuilder: (context, position) {
           return Container(
+            height: double.infinity,
             margin: EdgeInsets.only(top: 4, left: 6, right: 6, bottom: 10),
             decoration: BoxDecoration(
               color: startColorAppBar,
               borderRadius: BorderRadius.all(Radius.circular(10)),
             ),
             child: Column(
+              mainAxisSize: MainAxisSize.max,
               children: [
                 Padding(
                   padding: const EdgeInsets.only(top: 8.0, left: 8, right: 8),
@@ -267,28 +271,41 @@ class ListQuizView extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 4, bottom: 8.0),
-                  child: divider(),
+                  padding: const EdgeInsets.only(top: 4, bottom: 4.0),
+                  child: dividerText(tr('description')),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 4.0, right: 4),
-                  child: Text(
-                    questions[position].description.toString(),
-                    textAlign: TextAlign.justify,
-                    style: normalTextStyle,
+                  child: Flexible(
+                    child: Text(
+                      // questions[position].description.toString(),
+                      "Lorem ipsum — классический текст-«рыба». Является искажённым отрывком из философского трактата Марка Туллия Цицерона «О пределах добра и зла», написанного в 45 году до н. э. на латинском языке, обнаружение сходстваLorem ipsum — классический текст-«рыба». Является искажённым отрывком из философского трактата Марка Туллия Цицерона «О пределах добра и зла», написанного в 45 году до н. э. на латинском языке, обнаружение сходства  написанного в 45 году до н. э. на латинском языке, обнаружение сходств",
+                      textAlign: TextAlign.justify,
+                      style: normalTextStyle,
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 7,
+                    ),
                   ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 4, bottom: 4.0),
+                  child: dividerText(tr('variant')),
                 ),
                 CarouselSlider(
                   options: CarouselOptions(
-                    aspectRatio: 1.0,
+                    height: 275,
+                    aspectRatio: 2.0,
                     enlargeCenterPage: true,
                     viewportFraction: 1,
+                    enlargeStrategy: CenterPageEnlargeStrategy.scale,
                     enableInfiniteScroll: false,
                     initialPage: 0,
                     autoPlay: false,
                   ),
                   items: variantsWidget(questions[position].answerVariants),
                 ),
+                Spacer(),
+                voteButtonWidget(questions[position])
               ],
             ),
           );
@@ -297,62 +314,134 @@ class ListQuizView extends StatelessWidget {
     );
   }
 
+  Container voteButtonWidget(Question question) {
+    return Container(
+      decoration: BoxDecoration(
+        gradient: buttonGradientType1,
+        borderRadius: BorderRadius.only(
+          bottomLeft: Radius.circular(10),
+          bottomRight: Radius.circular(10),
+        ),
+        boxShadow: buttonShadowType1,
+      ),
+      child: TextButton(
+        style: buttonStyle(
+          borderRadius: BorderRadius.only(
+            bottomLeft: Radius.circular(10),
+            bottomRight: Radius.circular(10),
+          ),
+          overlay: overlayButtonType1,
+          background: Colors.transparent,
+          size: Size(100, 36),
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            Spacer(),
+            Padding(
+              padding: const EdgeInsets.only(left: 30.0),
+              child: Text(tr('ask'),
+                  style: TextStyle(
+                      fontFamily: 'rubik',
+                      color: buttonTextType1,
+                      fontSize: 15)),
+            ),
+            Spacer(),
+            Image.asset(
+              'assets/img/ic_edit.png',
+              width: 30,
+              height: 28,
+            ),
+          ],
+        ),
+        onPressed: () {
+          controller.navigateToDetailQuestion(question);
+        },
+      ),
+    );
+  }
+
+  //Виджет варианта ответа
   List<Widget>? variantsWidget(List<Answer>? variants) {
     return variants
         ?.map((item) => Container(
+              margin: EdgeInsets.only(top: 4),
               child: item.image == null
-                  ? Container()
-                  : ClipRRect(
-                      borderRadius: BorderRadius.all(Radius.circular(5.0)),
-                      child: Stack(
-                        children: <Widget>[
-                          FutureBuilder<Uint8List>(
-                              future: parseImage(item.image),
-                              builder: (context, snaphot) {
-                                if (snaphot.hasData) {
-                                  return Image.memory(
-                                    snaphot.requireData,
-                                    fit: BoxFit.cover,
-                                    height: 300,
-                                    width: 1000,
-                                  );
-                                } else if (snaphot.hasError) {
-                                  return Image.asset("plug_image.png");
-                                } else {
-                                  return CircularProgressIndicator();
-                                }
-                              }),
-                          Positioned(
-                            bottom: 0.0,
-                            left: 0.0,
-                            right: 0.0,
-                            child: Container(
-                              decoration: BoxDecoration(
-                                gradient: LinearGradient(
-                                  colors: [
-                                    Color.fromARGB(200, 0, 0, 0),
-                                    Color.fromARGB(0, 0, 0, 0)
-                                  ],
-                                  begin: Alignment.bottomCenter,
-                                  end: Alignment.topCenter,
-                                ),
-                              ),
-                              padding: EdgeInsets.symmetric(
-                                  vertical: 10.0, horizontal: 20.0),
-                              child: Text(
-                                item.text,
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 20.0,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      )),
+                  ? textVariantWidget(item)
+                  : imageVariantWidget(item),
             ))
         .toList();
+  }
+
+  Widget textVariantWidget(Answer item) {
+    return Container(
+      padding: EdgeInsets.only(top: 8, bottom: 8),
+      child: Column(
+        children: [
+          Container(
+            width: double.maxFinite,
+            decoration: BoxDecoration(color: darkBackground),
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              // item.text,
+              " kfsjdhk hskdjh fkjhsdfh ksjdhjf shdkfjhsdkjhf jsdhfk shdf kshd kfjhsdfhsdkjfhsdkfhsdkjhfsjdhf ks hd fkhsdfkjhsdk fh skdj fh ksdhfkwehiofhwep fhwiofhwpef jsdlkjh pifdhf gpwoe f",
+              style: normalTextStyle,
+              textAlign: TextAlign.justify,
+              overflow: TextOverflow.visible,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  //если ответ с картинкой
+  Widget imageVariantWidget(Answer item) {
+    return Stack(
+      children: [
+        FutureBuilder<Uint8List>(
+            future: parseImage(item.image),
+            builder: (context, snaphot) {
+              if (snaphot.hasData) {
+                return Padding(
+                  padding: const EdgeInsets.only(left: 10.0, right: 10),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                    child: Image.memory(
+                      snaphot.requireData,
+                      fit: BoxFit.cover,
+                      height: 180,
+                      width: 1000,
+                    ),
+                  ),
+                );
+              } else if (snaphot.hasError) {
+                return Image.asset("assets/img/plug_image.png");
+              } else {
+                return CircularProgressIndicator();
+              }
+            }),
+        Positioned(
+          top: 190.0,
+          bottom: 0.0,
+          left: 0.0,
+          right: 0.0,
+          child: Container(
+            width: double.infinity,
+            decoration: BoxDecoration(color: darkBackground),
+            padding: EdgeInsets.symmetric(vertical: 4.0, horizontal: 10.0),
+            child: Flexible(
+              child: Text(
+                item.text,
+                // "Lorem ipsum — классический текст-«рыба». Является искажённым отрывком из философского трактата Марка Туллия Цицерона ",
+                style: normalTextStyle,
+                textAlign: TextAlign.justify,
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
   }
 
   Widget loadingWidget() {

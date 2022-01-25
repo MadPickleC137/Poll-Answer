@@ -1,6 +1,6 @@
 {
     "code" : "en_US",
-    "app-name" : "Poll Answer",
+    "app-name" : "Inquirer",
     "quiz-list": "List quiz",
     "my_quiz": "My quizs",
     "pool": "Pool",
@@ -30,6 +30,7 @@
     "Education": "Education",
     "People": "People",
     "Other": "Other",
+    "ask": "Answer",
     "from-galery": "From galery",
     "error_request": "Sorry, undefinded error :(",
     "empty-category": "There are no polls in the selected category",

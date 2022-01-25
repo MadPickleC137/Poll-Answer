@@ -24,7 +24,6 @@ bool isDebugMode() {
 Future<Uint8List> parseImage(String? base64Image) async {
   if (base64Image != null) {
     var decodedImage = base64.decode(base64Image);
-    // File fileImage = File.fromRawPath(decodedImage);
     return decodedImage;
   } else {
     return Uint8List(0);

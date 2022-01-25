@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.poll_answer">
    <application
-        android:label="Опрос Ответ"
+        android:label="Опросник"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
