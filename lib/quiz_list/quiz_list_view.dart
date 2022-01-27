@@ -1,10 +1,8 @@
 // ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors, prefer_const_literals_to_create_immutables
 
-import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:animate_do/animate_do.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
@@ -16,6 +14,7 @@ import 'package:poll_answer/core/utils/scroll_mode.dart';
 import 'package:poll_answer/core/utils/utils.dart';
 import 'package:poll_answer/model/answer.dart';
 import 'package:poll_answer/model/question.dart';
+import 'package:poll_answer/quiz_list/carousel_answers.dart';
 import 'package:poll_answer/quiz_list/quiz_list_controller.dart';
 import 'package:poll_answer/theme/app_theme.dart';
 import 'package:poll_answer/theme/colors.dart';
@@ -131,6 +130,7 @@ class ListQuizView extends StatelessWidget {
                           shadowColor:
                               MaterialStateProperty.all(Colors.transparent),
                         ),
+                        onPressed: () {},
                         child: Text(
                           tr(controller.savedCategories[index].name),
                           style: TextStyle(
@@ -139,7 +139,6 @@ class ListQuizView extends StatelessWidget {
                             color: categoryTextColor,
                           ),
                         ),
-                        onPressed: () {},
                       ),
                     );
                   } else {
@@ -253,7 +252,6 @@ class ListQuizView extends StatelessWidget {
         controller: controller.pageController,
         itemBuilder: (context, position) {
           return Container(
-            height: double.infinity,
             margin: EdgeInsets.only(top: 4, left: 6, right: 6, bottom: 10),
             decoration: BoxDecoration(
               color: startColorAppBar,
@@ -270,39 +268,20 @@ class ListQuizView extends StatelessWidget {
                     style: titleTextStyle,
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 4, bottom: 4.0),
-                  child: dividerText(tr('description')),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 4.0, right: 4),
-                  child: Flexible(
-                    child: Text(
-                      // questions[position].description.toString(),
-                      "Lorem ipsum — классический текст-«рыба». Является искажённым отрывком из философского трактата Марка Туллия Цицерона «О пределах добра и зла», написанного в 45 году до н. э. на латинском языке, обнаружение сходстваLorem ipsum — классический текст-«рыба». Является искажённым отрывком из философского трактата Марка Туллия Цицерона «О пределах добра и зла», написанного в 45 году до н. э. на латинском языке, обнаружение сходства  написанного в 45 году до н. э. на латинском языке, обнаружение сходств",
-                      textAlign: TextAlign.justify,
-                      style: normalTextStyle,
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 7,
-                    ),
-                  ),
+                Text(
+                  questions[position].description.toString(),
+                  textAlign: TextAlign.justify,
+                  style: normalTextStyle,
+                  overflow: TextOverflow.visible,
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 4, bottom: 4.0),
                   child: dividerText(tr('variant')),
                 ),
-                CarouselSlider(
-                  options: CarouselOptions(
-                    height: 275,
-                    aspectRatio: 2.0,
-                    enlargeCenterPage: true,
-                    viewportFraction: 1,
-                    enlargeStrategy: CenterPageEnlargeStrategy.scale,
-                    enableInfiniteScroll: false,
-                    initialPage: 0,
-                    autoPlay: false,
-                  ),
-                  items: variantsWidget(questions[position].answerVariants),
+                SizedBox(
+                  height: 310,
+                  child:
+                      CarouselAnswers(questions[position].answerVariants ?? []),
                 ),
                 Spacer(),
                 voteButtonWidget(questions[position])
@@ -316,6 +295,7 @@ class ListQuizView extends StatelessWidget {
 
   Container voteButtonWidget(Question question) {
     return Container(
+      height: buttonHeight,
       decoration: BoxDecoration(
         gradient: buttonGradientType1,
         borderRadius: BorderRadius.only(
@@ -332,7 +312,6 @@ class ListQuizView extends StatelessWidget {
           ),
           overlay: overlayButtonType1,
           background: Colors.transparent,
-          size: Size(100, 36),
         ),
         child: Row(
           mainAxisSize: MainAxisSize.max,
@@ -397,21 +376,20 @@ class ListQuizView extends StatelessWidget {
 
   //если ответ с картинкой
   Widget imageVariantWidget(Answer item) {
-    return Stack(
+    return Column(
       children: [
         FutureBuilder<Uint8List>(
             future: parseImage(item.image),
             builder: (context, snaphot) {
               if (snaphot.hasData) {
                 return Padding(
-                  padding: const EdgeInsets.only(left: 10.0, right: 10),
+                  padding: EdgeInsets.only(left: 10.0, right: 10),
                   child: ClipRRect(
                     borderRadius: BorderRadius.all(Radius.circular(5.0)),
                     child: Image.memory(
                       snaphot.requireData,
-                      fit: BoxFit.cover,
-                      height: 180,
-                      width: 1000,
+                      fit: BoxFit.scaleDown,
+                      height: 190,
                     ),
                   ),
                 );
@@ -421,23 +399,16 @@ class ListQuizView extends StatelessWidget {
                 return CircularProgressIndicator();
               }
             }),
-        Positioned(
-          top: 190.0,
-          bottom: 0.0,
-          left: 0.0,
-          right: 0.0,
-          child: Container(
-            width: double.infinity,
-            decoration: BoxDecoration(color: darkBackground),
-            padding: EdgeInsets.symmetric(vertical: 4.0, horizontal: 10.0),
-            child: Flexible(
-              child: Text(
-                item.text,
-                // "Lorem ipsum — классический текст-«рыба». Является искажённым отрывком из философского трактата Марка Туллия Цицерона ",
-                style: normalTextStyle,
-                textAlign: TextAlign.justify,
-              ),
-            ),
+        Container(
+          width: double.maxFinite,
+          height: 90,
+          margin: EdgeInsets.only(top: 10),
+          decoration: BoxDecoration(color: darkBackground),
+          padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 10.0),
+          child: Text(
+            // item.text,
+            "Lorem ipsum — классический текст-«рыба». Является искажённым отрывком из философского трактата Марка Туллия Цицерона ",
+            style: normalTextStyle,
           ),
         ),
       ],

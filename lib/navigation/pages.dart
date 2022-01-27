@@ -1,8 +1,9 @@
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:poll_answer/create_quiz/quiz_create_view.dart';
-import 'package:poll_answer/detail/detail_view.dart';
+import 'package:poll_answer/detail_quiz/detail_view.dart';
 import 'package:poll_answer/disconnect/disconnect_view.dart';
 import 'package:poll_answer/launch/launch_view.dart';
+import 'package:poll_answer/model/question.dart';
 import 'package:poll_answer/navigation/bottom_nav_bar.dart';
 import 'package:poll_answer/navigation/routes.dart';
 import 'package:poll_answer/profile/active/profile_active_quiz_view.dart';

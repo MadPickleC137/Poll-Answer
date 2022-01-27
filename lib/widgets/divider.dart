@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:poll_answer/core/utils/constants.dart';
 import 'package:poll_answer/theme/colors.dart';
 
 Container divider() {
@@ -12,6 +13,7 @@ Container divider() {
 
 Container dividerText(String text) {
   return Container(
+    height: dividerHeight,
     child: Row(
       children: [
         Spacer(),

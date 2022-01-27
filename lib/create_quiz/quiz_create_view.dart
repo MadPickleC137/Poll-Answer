@@ -288,7 +288,7 @@ class QuizCreateView extends StatelessWidget {
                       child: TextFormField(
                         controller: controller.editTextControllers[index],
                         cursorHeight: 20,
-                        maxLength: 100,
+                        maxLength: 50,
                         maxLines: 1,
                         minLines: 1,
                         textAlign: TextAlign.left,

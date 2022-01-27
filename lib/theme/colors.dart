@@ -68,4 +68,5 @@ const Color textColorType4 = Color(0xA4FFFFFF);
 
 const Color darkBackground = Color(0xFF192229);
 const Color darkBackground2 = Color(0x33192229);
+const Color darkBackground3 = Color(0xA81C2A33);
 // End QuizCreateView

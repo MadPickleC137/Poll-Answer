@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:poll_answer/api/api_response.dart';
 import 'package:poll_answer/api/api_rest.dart';
+import 'package:poll_answer/core/utils/constants.dart';
+import 'package:poll_answer/core/utils/utils.dart';
 import 'package:poll_answer/model/category.dart';
 import 'package:poll_answer/model/question.dart';
 import 'package:poll_answer/navigation/routes.dart';
@@ -15,7 +17,7 @@ class QuizListConrtoller extends GetxController {
   List<Question> questions = [];
   Rx<Status> statusQuestion = Status.Loading.obs;
   PageController pageController = PageController();
-
+  double answerHeight = 0.0;
   @override
   void onInit() {
     super.onInit();
@@ -88,5 +90,15 @@ class QuizListConrtoller extends GetxController {
 
   void navigateToDetailQuestion(Question question) {
     Get.toNamed(Routes.QUIZ_DETAIL, arguments: question);
+  }
+
+  void setItemPageHeight(BuildContext context) {
+    answerHeight = getScreenHeight(context) -
+        bottomNavBarHeight -
+        categoryHeight -
+        toolBarHeight -
+        30 -
+        dividerHeight -
+        buttonHeight;
   }
 }

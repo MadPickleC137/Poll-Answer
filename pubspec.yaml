@@ -21,8 +21,8 @@ dependencies:
   animate_do: ^2.0.0
   lottie: ^1.2.1
   shimmer: ^2.0.0
-  carousel_slider: ^4.0.0
-
+  sliding_up_panel: ^2.0.0+1
+  
   # DI, навигация, MVC
   get: ^4.6.1
 

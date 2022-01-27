@@ -26,7 +26,20 @@ const List<BoxShadow> buttonShadowType1 = [
     spreadRadius: 0.5,
   ),
 ];
-
+const List<BoxShadow> indicatorShadow = [
+  BoxShadow(
+    color: Color(0x441FA5FF),
+    offset: Offset(1, 1),
+    blurRadius: 3,
+    spreadRadius: 0.3,
+  ),
+  BoxShadow(
+    color: Color(0x5D1FA5FF),
+    offset: Offset(-1, -1),
+    blurRadius: 3,
+    spreadRadius: 0.3,
+  ),
+];
 const List<BoxShadow> questionBodyShadow = [
   BoxShadow(
     color: bottomNavBarColor,
