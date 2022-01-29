@@ -16,4 +16,5 @@ class Routes {
   static const String PROFILE_CLOSED = "/main/profile/closed";
 
   static const String DISCONNECT = "/app/disconnect";
+  static const String INFO = "/app/info";
 }

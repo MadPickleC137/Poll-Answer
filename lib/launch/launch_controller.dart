@@ -69,7 +69,7 @@ class LaunchController extends GetxController {
         break;
       case Status.Error:
       case Status.Forbidden:
-        Get.offNamed(Routes.QUIZ_CREATE);
+        Get.offNamed(Routes.DISCONNECT);
         break;
       default:
         break;

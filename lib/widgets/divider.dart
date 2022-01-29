@@ -11,6 +11,14 @@ Container divider() {
   );
 }
 
+Container dividerFullWidth() {
+  return Container(
+    height: 0.5,
+    width: double.infinity,
+    color: dividerColor,
+  );
+}
+
 Container dividerText(String text) {
   return Container(
     height: dividerHeight,

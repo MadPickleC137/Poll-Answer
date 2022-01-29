@@ -31,6 +31,8 @@
     "People": "People",
     "Other": "Other",
     "ask": "Answer",
+    "other_variants": "Other responses",
+    "info_title": "Info",
     "from-galery": "From galery",
     "error_request": "Sorry, undefinded error :(",
     "empty-category": "There are no polls in the selected category",

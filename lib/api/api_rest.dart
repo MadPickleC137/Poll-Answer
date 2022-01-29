@@ -103,6 +103,18 @@ class RestApi {
     return ResponseApi(status: status, data: data);
   }
 
+  static Future<ResponseApi> voteByQuestion(
+      int questionId, int answerId) async {
+    Map<String, dynamic> query = {
+      "questionId": questionId,
+      "answerId": answerId,
+    };
+    Uri url = _url(RouterApi.putVote, query);
+    var response = await http.put(url, headers: await _header);
+    Status status = _checkAnyStatus(response.statusCode);
+    return ResponseApi(status: status, data: null);
+  }
+
   static Status _checkAnyStatus(int statusCode) {
     var status = Status.Empty;
     switch (statusCode) {

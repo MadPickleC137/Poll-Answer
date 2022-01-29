@@ -61,6 +61,7 @@ const Color appBarButtonOverlay = Color(0x3D8CB5E4);
 
 const Color appBarIconColor = Color(0xFFBFE5FF);
 const Color appBarTextColor2 = Color(0xFFBFE5FF);
+const Color appBarIconColor3 = Color(0xFF29485E);
 const Color iconColorType2 = Color(0xFF8CB5E4);
 const Color textColorType2 = Color(0xFFBFE5FF);
 const Color textColorType3 = Color(0xFF98B2C9);
@@ -70,3 +71,9 @@ const Color darkBackground = Color(0xFF192229);
 const Color darkBackground2 = Color(0x33192229);
 const Color darkBackground3 = Color(0xA81C2A33);
 // End QuizCreateView
+
+//chart colors
+const Color sectionColor1 = Color(0x881FA5FF);
+const Color sectionColor2 = Color(0xC21C2A33);
+
+//end charts colors

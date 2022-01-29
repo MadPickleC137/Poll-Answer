@@ -4,8 +4,8 @@ import 'package:poll_answer/theme/colors.dart';
 BoxDecoration decorationAppBar() {
   return const BoxDecoration(
       borderRadius: BorderRadius.only(
-        bottomLeft: Radius.circular(10),
-        bottomRight: Radius.circular(10),
+        bottomLeft: Radius.circular(14),
+        bottomRight: Radius.circular(14),
       ),
       gradient: LinearGradient(colors: [
         startColorAppBar,
