@@ -32,9 +32,14 @@
     "Other": "Other",
     "ask": "Answer",
     "other_variants": "Other responses",
-    "info_title": "Info",
+    "info_title": "Info about App",
     "from-galery": "From galery",
+    "action": "Action",
+    "show_stat": "Show statistic",
+    "close_quiz": "Close poll",
+    "success_title": "Your vote has been accepted!",
     "error_request": "Sorry, undefinded error :(",
+    "double_vote_error": "You have already voted",
     "empty-category": "There are no polls in the selected category",
     "from-camera": "Create from camera"
 }

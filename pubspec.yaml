@@ -80,6 +80,9 @@ flutter:
       - assets/img/ic_map.png
       - assets/img/ic_edit.png
       - assets/img/ic_map_en.png
+      - assets/img/ic_ok.png
+      - assets/img/ic_stat.png
+      - assets/img/ic_err.png
       - assets/img/plug_image.png
       - assets/anim/loader.json
 

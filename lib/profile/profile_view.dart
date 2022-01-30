@@ -9,6 +9,7 @@ import 'package:poll_answer/profile/active/profile_active_quiz_view.dart';
 import 'package:poll_answer/profile/closed/profile_closed_quiz_view.dart';
 import 'package:poll_answer/profile/profile_controller.dart';
 import 'package:poll_answer/theme/colors.dart';
+import 'package:poll_answer/widgets/button_style.dart';
 import 'package:poll_answer/widgets/decoration_app_bar.dart';
 
 class ProfileView extends StatelessWidget {
@@ -37,23 +38,43 @@ class ProfileView extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 10.0),
-              child: Align(
-                alignment: Alignment.center,
-                child: Text(
-                  tr('my_quiz'),
-                  style: TextStyle(
-                    fontFamily: 'rubik',
-                    fontSize: 18,
-                    color: appBarTextColor2,
+            Stack(
+              children: [
+                Align(
+                  alignment: Alignment.center,
+                  child: Text(
+                    tr('my_quiz'),
+                    style: TextStyle(
+                      fontFamily: 'rubik',
+                      fontSize: 16,
+                      color: appBarTextColor2,
+                    ),
+                    textAlign: TextAlign.center,
                   ),
                 ),
-              ),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: TextButton(
+                    style: buttonStyle(
+                      background: Colors.transparent,
+                      overlay: appBarButtonOverlay,
+                      size: Size(24, 24),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Icon(
+                      Icons.info_outline_rounded,
+                      color: appBarIconColor,
+                    ),
+                    onPressed: () {
+                      _controller.navigateToInfo();
+                    },
+                  ),
+                ),
+              ],
             ),
             Container(
               margin: EdgeInsets.only(left: 10, right: 10),
-              padding: EdgeInsets.only(top: 14),
+              padding: EdgeInsets.only(top: 2, bottom: 4),
               alignment: Alignment.topCenter,
               child: CupertinoSlidingSegmentedControl<int>(
                 backgroundColor: slidingBackgroundColor,

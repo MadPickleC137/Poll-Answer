@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 import 'package:poll_answer/core/utils/constants.dart';
+import 'package:poll_answer/theme/app_theme.dart';
 import 'package:poll_answer/theme/colors.dart';
 import 'package:poll_answer/widgets/decoration_app_bar.dart';
+import 'package:poll_answer/widgets/divider.dart';
 
 class InfoView extends StatelessWidget {
   @override
@@ -34,7 +36,7 @@ class InfoView extends StatelessWidget {
                 showIfOpened: false,
                 child: CircularButton(
                   icon: const Icon(
-                    Icons.arrow_back_ios_outlined,
+                    Icons.close_rounded,
                     color: iconColorWhite,
                   ),
                   onPressed: () {
@@ -53,7 +55,7 @@ class InfoView extends StatelessWidget {
                   style: TextStyle(
                     fontFamily: 'rubik',
                     fontSize: 16,
-                    color: appBarTextColor,
+                    color: textColorType3,
                   ),
                 ),
               ),
@@ -68,9 +70,49 @@ class InfoView extends StatelessWidget {
   Widget _body(BuildContext context) {
     return SingleChildScrollView(
       child: Container(
+        padding: const EdgeInsets.only(top: 12, bottom: 10),
         child: Column(
-          children: [],
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            textItem(
+                "1. Каждому пользователю разрешается проголосовать только один раз в одном опросе. "),
+            dividerFullWidth(),
+            textItem(
+                "2. Отсутствует возможность отмены голоса, поэтому будте аккуратне в выборе варианта ответа!"),
+            dividerFullWidth(),
+            textItem(
+                "3. Голосование проходит полностью анонимно, как для пользователя создавшего опрос, так и для его участников! "),
+            dividerFullWidth(),
+            textItem(
+                "4. В случае, если вы удалите приложение вы потеряете доступ к вашим опросам, которые вы создали. "),
+            dividerFullWidth(),
+            textItem(
+                "5. Максимальное количество создаваемых вариантов ответов равняется 5. "),
+            dividerFullWidth(),
+            textItem(
+                "6. Статистика по опросу для голосующих доступна только в процентном соотношении. "),
+            dividerFullWidth(),
+            textItem(
+                "7. Каждый опрос, (включая завершенные и активные) с момента создания существует в системе ровно один месяц, по истечению этого периода опрос удалится."),
+            dividerFullWidth(),
+            textItem(
+                "8. Пользователь создавший опрос(-ы) вправе завершить в любой момент времени созданные им опрос(-ы). Завершенные опросы могут быть доступны только пользователю создавшему их."),
+            dividerFullWidth(),
+            textItem(
+                "9. На текущем этапе мы не несем ответственности за содержание опросов. Сервис создавался только в развлекательных целях."),
+          ],
         ),
+      ),
+    );
+  }
+
+  Widget textItem(String text) {
+    return Padding(
+      padding: const EdgeInsets.only(left: 8, right: 8, bottom: 8, top: 8),
+      child: Text(
+        text,
+        style: messageTextStyle,
+        textAlign: TextAlign.left,
       ),
     );
   }

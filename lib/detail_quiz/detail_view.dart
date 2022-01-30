@@ -43,7 +43,7 @@ class QuizDetailView extends StatelessWidget {
   Widget _slidingPanel(BuildContext context) {
     return SlidingUpPanel(
       borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(24), topRight: Radius.circular(24)),
+          topLeft: Radius.circular(14), topRight: Radius.circular(14)),
       margin: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
       minHeight: collapsedAppBarHeight,
       maxHeight: 300,
@@ -61,27 +61,21 @@ class QuizDetailView extends StatelessWidget {
   }
 
   Widget _collapsedWidget(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.only(
-        bottomLeft: Radius.circular(14),
-        bottomRight: Radius.circular(14),
-      ),
-      child: Container(
-        decoration: decorationAppBar(),
-        width: getScreenWidth(context),
-        child: Column(
-          children: [
-            _appBar(),
-            RotatedBox(
-              quarterTurns: 3,
-              child: Icon(
-                Icons.arrow_back_ios_new_rounded,
-                size: 16,
-                color: appBarIconColor3,
-              ),
-            )
-          ],
-        ),
+    return Container(
+      decoration: decorationAppBar(),
+      width: getScreenWidth(context),
+      child: Column(
+        children: [
+          _appBar(),
+          RotatedBox(
+            quarterTurns: 3,
+            child: Icon(
+              Icons.arrow_back_ios_new_rounded,
+              size: 18,
+              color: appBarIconColor3,
+            ),
+          )
+        ],
       ),
     );
   }

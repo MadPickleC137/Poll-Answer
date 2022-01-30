@@ -63,6 +63,7 @@ const Color appBarIconColor = Color(0xFFBFE5FF);
 const Color appBarTextColor2 = Color(0xFFBFE5FF);
 const Color appBarIconColor3 = Color(0xFF29485E);
 const Color iconColorType2 = Color(0xFF8CB5E4);
+const Color iconColorType3 = Color(0xC2B65959);
 const Color textColorType2 = Color(0xFFBFE5FF);
 const Color textColorType3 = Color(0xFF98B2C9);
 const Color textColorType4 = Color(0xA4FFFFFF);

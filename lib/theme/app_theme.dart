@@ -14,18 +14,34 @@ const SystemUiOverlayStyle overlayStyle = SystemUiOverlayStyle(
 
 const List<BoxShadow> buttonShadowType1 = [
   BoxShadow(
-    color: Color(0x441FA5FF),
+    color: Color(0x361FA5FF),
     offset: Offset(2, 2),
     blurRadius: 30,
     spreadRadius: 0.5,
   ),
   BoxShadow(
-    color: Color(0x5D1FA5FF),
+    color: Color(0x4D1FA5FF),
     offset: Offset(-4, -4),
     blurRadius: 30,
     spreadRadius: 0.5,
   ),
 ];
+
+const List<BoxShadow> buttonShadowType2 = [
+  BoxShadow(
+    color: Color(0x285DAC6E),
+    offset: Offset(2, 2),
+    blurRadius: 30,
+    spreadRadius: 0.5,
+  ),
+  BoxShadow(
+    color: Color(0x2D5DAC6E),
+    offset: Offset(-4, -4),
+    blurRadius: 30,
+    spreadRadius: 0.5,
+  ),
+];
+
 const List<BoxShadow> indicatorShadow = [
   BoxShadow(
     color: Color(0x441FA5FF),
@@ -51,6 +67,21 @@ const List<BoxShadow> questionBodyShadow = [
     color: bottomNavBarColor,
     offset: Offset(-4, -4),
     blurRadius: 30,
+    spreadRadius: 0.5,
+  ),
+];
+
+const List<BoxShadow> snackBarShadow = [
+  BoxShadow(
+    color: bottomNavBarColor,
+    offset: Offset(2, 2),
+    blurRadius: 20,
+    spreadRadius: 0.5,
+  ),
+  BoxShadow(
+    color: bottomNavBarColor,
+    offset: Offset(-2, -2),
+    blurRadius: 20,
     spreadRadius: 0.5,
   ),
 ];
