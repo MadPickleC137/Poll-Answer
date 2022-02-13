@@ -37,7 +37,7 @@ class LaunchController extends GetxController {
       if (response.status == Status.Success) {
         var cache = await Hive.openBox('categories');
         cache.put('list', response.data);
-        getUserQuistion();
+        getUserQuistions();
       } else {
         updateWithStatus(response.status);
       }
@@ -47,10 +47,11 @@ class LaunchController extends GetxController {
     }
   }
 
-  getUserQuistion() async {
-    var response = await RestApi.getUserQuestion();
+  getUserQuistions() async {
+    var response = await RestApi.getUserQuestions();
     if (response.status == Status.Success) {
       var cache = await Hive.openBox('user-questions');
+      cache.clear();
       cache.put('list', response.data);
     }
     updateWithStatus(response.status);
@@ -62,6 +63,8 @@ class LaunchController extends GetxController {
       case Status.Unauthorized:
         if (counterRequestLogin < 2) {
           login();
+        } else {
+          Get.offNamed(Routes.DISCONNECT);
         }
         break;
       case Status.Success:

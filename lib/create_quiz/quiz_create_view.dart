@@ -107,7 +107,7 @@ class QuizCreateView extends StatelessWidget {
   PreferredSize toolBar(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     return PreferredSize(
-      preferredSize: Size(width, 40),
+      preferredSize: Size(width, 50),
       child: Container(
         width: double.infinity,
         margin: EdgeInsets.only(top: MediaQuery.of(context).padding.top),

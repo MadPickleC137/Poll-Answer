@@ -11,9 +11,9 @@ Container divider() {
   );
 }
 
-Container dividerFullWidth() {
+Container dividerFullWidth(double _height) {
   return Container(
-    height: 0.5,
+    height: _height,
     width: double.infinity,
     color: dividerColor,
   );

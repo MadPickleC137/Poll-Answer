@@ -4,11 +4,8 @@ import 'package:poll_answer/detail_quiz/detail_view.dart';
 import 'package:poll_answer/disconnect/disconnect_view.dart';
 import 'package:poll_answer/info/info_view.dart';
 import 'package:poll_answer/launch/launch_view.dart';
-import 'package:poll_answer/model/question.dart';
 import 'package:poll_answer/navigation/bottom_nav_bar.dart';
 import 'package:poll_answer/navigation/routes.dart';
-import 'package:poll_answer/profile/active/profile_active_quiz_view.dart';
-import 'package:poll_answer/profile/closed/profile_closed_quiz_view.dart';
 import 'package:poll_answer/profile/profile_view.dart';
 import 'package:poll_answer/profile/statistic/profile_stat_quiz_view.dart';
 import 'package:poll_answer/quiz_closing/quiz_closing_view.dart';
@@ -35,14 +32,6 @@ class Pages {
     GetPage(
       name: Routes.PROFILE,
       page: () => ProfileView(),
-    ),
-    GetPage(
-      name: Routes.PROFILE_ACTIVE,
-      page: () => ProfileActiveQuizView(),
-    ),
-    GetPage(
-      name: Routes.PROFILE_CLOSED,
-      page: () => ProfileClosedQuizView(),
     ),
     GetPage(
       name: Routes.QUIZ_CREATE,

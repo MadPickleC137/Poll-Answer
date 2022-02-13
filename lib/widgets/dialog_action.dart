@@ -32,7 +32,7 @@ void dialogAction(String message, List<DialogActionParams> actionsParams) {
         borderRadius: BorderRadius.all(Radius.circular(14)),
         color: backgroundColor,
       ),
-      padding: EdgeInsets.only(top: 10, bottom: 10),
+      padding: const EdgeInsets.only(top: 10, bottom: 10),
       child: Column(
         mainAxisSize: MainAxisSize.max,
         children: _listActions(actionsParams),

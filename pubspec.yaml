@@ -84,6 +84,7 @@ flutter:
       - assets/img/ic_stat.png
       - assets/img/ic_err.png
       - assets/img/plug_image.png
+      - assets/img/ic_arrow_down.png
       - assets/anim/loader.json
 
   fonts:

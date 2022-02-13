@@ -97,6 +97,14 @@ class CreateController extends GetxController {
         categoryId: selectedCat.value?.id,
         answerVariants: variants);
     var response = await RestApi.createQuestion(question);
+    var cache = Hive.box('user-questions');
+    var savedQuestions = cache.get('list') as List<Question>?;
+    if (savedQuestions == null) {
+      await cache.put('list', [question]);
+    } else {
+      savedQuestions.add(question);
+      await cache.put('list', savedQuestions);
+    }
     if (response.status == Status.Success) {
       Get.back();
     }

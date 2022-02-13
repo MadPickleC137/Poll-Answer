@@ -55,7 +55,7 @@ class RestApi {
     return ResponseApi(status: status, data: data);
   }
 
-  static Future<ResponseApi<List<Question>>> getUserQuestion() async {
+  static Future<ResponseApi<List<Question>>> getUserQuestions() async {
     Uri url = _url(RouterApi.getUserQuestions, {});
     var response = await http.get(url, headers: await _header);
     Status status = Status.Empty;

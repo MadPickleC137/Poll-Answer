@@ -1,10 +1,12 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:animate_do/animate_do.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:get/instance_manager.dart';
+import 'package:poll_answer/api/api_response.dart';
 import 'package:poll_answer/profile/active/profile_active_quiz_view.dart';
 import 'package:poll_answer/profile/closed/profile_closed_quiz_view.dart';
 import 'package:poll_answer/profile/profile_controller.dart';
@@ -21,7 +23,9 @@ class ProfileView extends StatelessWidget {
       return Scaffold(
         backgroundColor: backgroundColor,
         appBar: appBar(context),
-        body: _segmentsPages[controller.groupValue],
+        body: FadeInDown(
+          child: _body(controller),
+        ),
       );
     });
   }
@@ -108,8 +112,57 @@ class ProfileView extends StatelessWidget {
         ));
   }
 
-  final List<Widget> _segmentsPages = [
-    ProfileActiveQuizView(),
-    ProfileClosedQuizView(),
-  ];
+  Widget _loadingProgressBar() {
+    return Center(
+      child: CircularProgressIndicator(),
+    );
+  }
+
+  Widget _emptyQuestions() {
+    return Center(
+      child: Column(
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          Spacer(),
+          Padding(
+            padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+            child: Text(
+              tr('empty-question'),
+              style: TextStyle(
+                fontFamily: 'exo',
+                fontSize: 15,
+                color: textColorType3,
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ),
+          Spacer(),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 70),
+            child: Image.asset(
+              "assets/img/ic_arrow_down.png",
+              width: 80,
+              height: 80,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _body(ProfileController controller) {
+    switch (controller.statusQuestionLoad) {
+      case Status.Empty:
+        return _emptyQuestions();
+      case Status.Loading:
+        return _loadingProgressBar();
+      case Status.Error:
+        controller.navigateToError();
+        return Container();
+      default:
+        return controller.groupValue == 0
+            ? ProfileActiveQuizView(activeQuests: controller.getActiveQuests())
+            : ProfileClosedQuizView(closedQuests: controller.getClosedQuests());
+    }
+  }
 }

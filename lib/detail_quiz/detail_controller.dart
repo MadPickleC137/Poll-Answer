@@ -31,11 +31,17 @@ class DetailController extends GetxController {
   }
 
   double itemPercentVoted(int votedCount) {
-    return (votedCount / allVotedCount) * 100;
+    if (allVotedCount > 0 && votedCount > 0) {
+      return (votedCount / allVotedCount) * 100;
+    }
+    return 0.0;
   }
 
   double otherPercentVoted(int votedCount) {
-    return ((allVotedCount - votedCount) / allVotedCount) * 100;
+    if (allVotedCount > 0 && votedCount > 0) {
+      return ((allVotedCount - votedCount) / allVotedCount) * 100;
+    }
+    return 0.0;
   }
 
   void setQuestion(Question question) {

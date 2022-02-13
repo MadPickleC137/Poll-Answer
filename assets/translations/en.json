@@ -41,5 +41,6 @@
     "error_request": "Sorry, undefinded error :(",
     "double_vote_error": "You have already voted",
     "empty-category": "There are no polls in the selected category",
+    "empty-question": "You don't have any polls yet. You can always create them",
     "from-camera": "Create from camera"
 }

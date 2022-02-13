@@ -271,7 +271,6 @@ class QuizDetailView extends StatelessWidget {
               background: Colors.transparent,
             ),
             child: Text(answer.text,
-                // "1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890",
                 style: TextStyle(
                     fontFamily: 'rubik', color: buttonTextType1, fontSize: 15)),
             onPressed: () {
@@ -288,17 +287,17 @@ class QuizDetailView extends StatelessWidget {
   Widget _divider() {
     return Padding(
       padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
-      child: dividerFullWidth(),
+      child: dividerFullWidth(3.0),
     );
   }
 
   BoxDecoration itemTextContainerDecoration() {
     return BoxDecoration(
-      color: Color(0xFF1C2A33),
+      color: Color(0xFF18262E),
       borderRadius: BorderRadius.all(Radius.circular(14)),
       boxShadow: const [
         BoxShadow(
-          color: Color(0xFF19262E),
+          color: Color(0xFF18262E),
           blurRadius: 22,
           offset: Offset(-4, -4),
         ),
@@ -311,37 +310,43 @@ class QuizDetailView extends StatelessWidget {
     );
   }
 
-  Container itemPieChart(Answer answer) {
-    return Container(
-      height: 170,
-      child: PieChart(
-        PieChartData(
-          sectionsSpace: 0,
-          centerSpaceRadius: 25,
-          sections: [
-            PieChartSectionData(
-                title:
-                    "${_controller.itemPercentVoted(answer.votedCount).round()} %",
-                radius: 55,
-                value: _controller.itemPercentVoted(answer.votedCount),
-                color: sectionColor1,
-                titleStyle: TextStyle(
-                    fontSize: 16, color: textColorType2, fontFamily: 'rubik')),
-            PieChartSectionData(
-                title: tr('other_variants'),
-                radius: 50,
-                color: sectionColor2,
-                value: _controller.otherPercentVoted(answer.votedCount),
-                titleStyle: TextStyle(
-                    fontSize: 10, color: textColorType2, fontFamily: 'rubik')),
-          ],
-          borderData: FlBorderData(
-            show: false,
-          ),
-        ),
-        swapAnimationDuration: Duration(milliseconds: 150), // Optional
-        swapAnimationCurve: Curves.linear, // Optional
-      ),
-    );
+  Widget itemPieChart(Answer answer) {
+    return answer.votedCount > 0
+        ? SizedBox(
+            height: 170,
+            child: PieChart(
+              PieChartData(
+                sectionsSpace: 0,
+                centerSpaceRadius: 25,
+                sections: [
+                  PieChartSectionData(
+                      title:
+                          "${_controller.itemPercentVoted(answer.votedCount).round()} %",
+                      radius: 55,
+                      value: _controller.itemPercentVoted(answer.votedCount),
+                      color: sectionColor1,
+                      titleStyle: TextStyle(
+                          fontSize: 16,
+                          color: textColorType2,
+                          fontFamily: 'rubik')),
+                  PieChartSectionData(
+                      title: tr('other_variants'),
+                      radius: 50,
+                      color: sectionColor2,
+                      value: _controller.otherPercentVoted(answer.votedCount),
+                      titleStyle: TextStyle(
+                          fontSize: 10,
+                          color: textColorType2,
+                          fontFamily: 'rubik')),
+                ],
+                borderData: FlBorderData(
+                  show: false,
+                ),
+              ),
+              swapAnimationDuration: Duration(milliseconds: 150), // Optional
+              swapAnimationCurve: Curves.linear, // Optional
+            ),
+          )
+        : Container();
   }
 }
