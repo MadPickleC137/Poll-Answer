@@ -36,6 +36,7 @@ dependencies:
   hive: ^2.0.5
   hive_flutter: ^1.1.0
   path_provider: ^2.0.8
+  shared_preferences: ^2.0.13
   
   # шрифты
   google_fonts: ^2.1.1
@@ -79,6 +80,7 @@ flutter:
       - assets/img/no_connect.png
       - assets/img/ic_map.png
       - assets/img/ic_edit.png
+      - assets/img/ic_action_quiz.png
       - assets/img/ic_map_en.png
       - assets/img/ic_ok.png
       - assets/img/ic_stat.png

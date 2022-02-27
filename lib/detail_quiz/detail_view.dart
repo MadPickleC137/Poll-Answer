@@ -106,7 +106,6 @@ class QuizDetailView extends StatelessWidget {
             padding: const EdgeInsets.only(left: 8.0, right: 8.0),
             child: Text(
               _question.title ?? "",
-              // "1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890",
               style: TextStyle(
                 fontFamily: 'rubik',
                 fontSize: 16,
@@ -216,7 +215,6 @@ class QuizDetailView extends StatelessWidget {
               background: Colors.transparent,
             ),
             child: Text(answer.text,
-                // "1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890",
                 style: TextStyle(
                     fontFamily: 'rubik', color: buttonTextType1, fontSize: 15)),
             onPressed: () {

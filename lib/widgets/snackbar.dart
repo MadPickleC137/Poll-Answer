@@ -22,3 +22,19 @@ void showSnackbar(
       margin: const EdgeInsets.only(top: 20, left: 20, right: 20),
       boxShadows: snackBarShadow);
 }
+
+void showSnackbarMessage(String title, String imagePath, String message,
+    Color imageColor, bool isError) {
+  Get.snackbar(title, isError ? '' : message,
+      icon: Image.asset(
+        imagePath,
+        width: 22,
+        height: 22,
+        color: imageColor,
+      ),
+      snackPosition: SnackPosition.TOP,
+      backgroundColor: backgroundColor,
+      colorText: textColorType2,
+      margin: const EdgeInsets.only(top: 20, left: 20, right: 20),
+      boxShadows: snackBarShadow);
+}

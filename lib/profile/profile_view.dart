@@ -19,6 +19,7 @@ class ProfileView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    _controller.getUserQuestions();
     return GetBuilder<ProfileController>(builder: (controller) {
       return Scaffold(
         backgroundColor: backgroundColor,
@@ -118,42 +119,10 @@ class ProfileView extends StatelessWidget {
     );
   }
 
-  Widget _emptyQuestions() {
-    return Center(
-      child: Column(
-        mainAxisSize: MainAxisSize.max,
-        children: [
-          Spacer(),
-          Padding(
-            padding: const EdgeInsets.only(left: 8.0, right: 8.0),
-            child: Text(
-              tr('empty-question'),
-              style: TextStyle(
-                fontFamily: 'exo',
-                fontSize: 15,
-                color: textColorType3,
-              ),
-              textAlign: TextAlign.center,
-            ),
-          ),
-          Spacer(),
-          Padding(
-            padding: const EdgeInsets.only(bottom: 70),
-            child: Image.asset(
-              "assets/img/ic_arrow_down.png",
-              width: 80,
-              height: 80,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
   Widget _body(ProfileController controller) {
     switch (controller.statusQuestionLoad) {
       case Status.Empty:
-        return _emptyQuestions();
+        return emptyQuestions();
       case Status.Loading:
         return _loadingProgressBar();
       case Status.Error:
@@ -165,4 +134,36 @@ class ProfileView extends StatelessWidget {
             : ProfileClosedQuizView(closedQuests: controller.getClosedQuests());
     }
   }
+}
+
+Widget emptyQuestions() {
+  return Center(
+    child: Column(
+      mainAxisSize: MainAxisSize.max,
+      children: [
+        Spacer(),
+        Padding(
+          padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+          child: Text(
+            tr('empty-question'),
+            style: TextStyle(
+              fontFamily: 'exo',
+              fontSize: 15,
+              color: textColorType3,
+            ),
+            textAlign: TextAlign.center,
+          ),
+        ),
+        Spacer(),
+        Padding(
+          padding: const EdgeInsets.only(bottom: 70),
+          child: Image.asset(
+            "assets/img/ic_arrow_down.png",
+            width: 80,
+            height: 80,
+          ),
+        ),
+      ],
+    ),
+  );
 }

@@ -1,9 +1,11 @@
 // ignore_for_file: invalid_use_of_protected_member
 
 import 'dart:convert';
+import 'dart:ffi';
 import 'dart:io';
 import 'dart:math';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -13,6 +15,8 @@ import 'package:poll_answer/api/api_rest.dart';
 import 'package:poll_answer/model/answer.dart';
 import 'package:poll_answer/model/category.dart';
 import 'package:poll_answer/model/question.dart';
+import 'package:poll_answer/theme/colors.dart';
+import 'package:poll_answer/widgets/snackbar.dart';
 
 class CreateController extends GetxController {
   Rx<Category?> selectedCat = Category(id: 1, name: 'All').obs;
@@ -23,7 +27,7 @@ class CreateController extends GetxController {
   RxInt countAnswer = 1.obs;
   List<TextEditingController> editTextControllers = [];
   final ImagePicker _picker = ImagePicker();
-
+  bool isCreatedCall = false;
   var descTextController = TextEditingController();
 
   var titleTextController = TextEditingController();
@@ -96,17 +100,29 @@ class CreateController extends GetxController {
         description: descTextController.value.text,
         categoryId: selectedCat.value?.id,
         answerVariants: variants);
-    var response = await RestApi.createQuestion(question);
-    var cache = Hive.box('user-questions');
-    var savedQuestions = cache.get('list') as List<Question>?;
-    if (savedQuestions == null) {
-      await cache.put('list', [question]);
-    } else {
-      savedQuestions.add(question);
-      await cache.put('list', savedQuestions);
-    }
-    if (response.status == Status.Success) {
-      Get.back();
+
+    if (isCreatedCall == false) {
+      var response = await RestApi.createQuestion(question);
+      if (response.status == Status.Success) {
+        isCreatedCall = true;
+        showSnackbarMessage(
+          tr('success_create_question'),
+          "assets/img/ic_ok.png",
+          tr('success_create_question_message'),
+          iconColorType2,
+          false,
+        );
+        Future.delayed(const Duration(milliseconds: 5000), () {
+          Get.back();
+        });
+      } else {
+        showSnackbar(
+          tr('error_request'),
+          "assets/img/ic_err.png",
+          iconColorType3,
+          true,
+        );
+      }
     }
   }
 

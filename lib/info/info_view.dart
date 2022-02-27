@@ -9,6 +9,12 @@ import 'package:poll_answer/widgets/decoration_app_bar.dart';
 import 'package:poll_answer/widgets/divider.dart';
 
 class InfoView extends StatelessWidget {
+  TextStyle ruleTitleTextStyle = const TextStyle(
+    fontFamily: 'rubik',
+    fontSize: 16,
+    color: textColorType3,
+  );
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,11 +58,7 @@ class InfoView extends StatelessWidget {
                 alignment: Alignment.center,
                 child: Text(
                   tr('info_title'),
-                  style: TextStyle(
-                    fontFamily: 'rubik',
-                    fontSize: 16,
-                    color: textColorType3,
-                  ),
+                  style: ruleTitleTextStyle,
                 ),
               ),
             ),
@@ -74,32 +76,23 @@ class InfoView extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
-            textItem(
-                "1. Каждому пользователю разрешается проголосовать только один раз в одном опросе. "),
+            textItem(tr('rule_1')),
             dividerFullWidth(0.5),
-            textItem(
-                "2. Отсутствует возможность отмены голоса, поэтому будте аккуратне в выборе варианта ответа!"),
+            textItem(tr('rule_2')),
             dividerFullWidth(0.5),
-            textItem(
-                "3. Голосование проходит полностью анонимно, как для пользователя создавшего опрос, так и для его участников! "),
+            textItem(tr('rule_3')),
             dividerFullWidth(0.5),
-            textItem(
-                "4. В случае, если вы удалите приложение вы потеряете доступ к вашим опросам, которые вы создали. "),
+            textItem(tr('rule_4')),
             dividerFullWidth(0.5),
-            textItem(
-                "5. Максимальное количество создаваемых вариантов ответов равняется 5. "),
+            textItem(tr('rule_5')),
             dividerFullWidth(0.5),
-            textItem(
-                "6. Статистика по опросу для голосующих доступна только в процентном соотношении. "),
+            textItem(tr('rule_6')),
             dividerFullWidth(0.5),
-            textItem(
-                "7. Каждый опрос, (включая завершенные и активные) с момента создания существует в системе ровно один месяц, по истечению этого периода опрос удалится."),
+            textItem(tr('rule_7')),
             dividerFullWidth(0.5),
-            textItem(
-                "8. Пользователь создавший опрос(-ы) вправе завершить в любой момент времени созданные им опрос(-ы). Завершенные опросы могут быть доступны только пользователю создавшему их."),
+            textItem(tr('rule_8')),
             dividerFullWidth(0.5),
-            textItem(
-                "9. На текущем этапе мы не несем ответственности за содержание опросов. Сервис создавался только в развлекательных целях."),
+            textItem(tr('rule_9')),
           ],
         ),
       ),

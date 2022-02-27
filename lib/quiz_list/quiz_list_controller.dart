@@ -91,14 +91,4 @@ class QuizListConrtoller extends GetxController {
   void navigateToDetailQuestion(Question question) {
     Get.toNamed(Routes.QUIZ_DETAIL, arguments: question);
   }
-
-  void setItemPageHeight(BuildContext context) {
-    answerHeight = getScreenHeight(context) -
-        bottomNavBarHeight -
-        categoryHeight -
-        toolBarHeight -
-        30 -
-        dividerHeight -
-        buttonHeight;
-  }
 }

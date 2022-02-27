@@ -37,24 +37,12 @@ class LaunchController extends GetxController {
       if (response.status == Status.Success) {
         var cache = await Hive.openBox('categories');
         cache.put('list', response.data);
-        getUserQuistions();
-      } else {
-        updateWithStatus(response.status);
       }
+      updateWithStatus(response.status);
     } catch (ex) {
       printError(info: ex.toString());
       updateWithStatus(Status.Error);
     }
-  }
-
-  getUserQuistions() async {
-    var response = await RestApi.getUserQuestions();
-    if (response.status == Status.Success) {
-      var cache = await Hive.openBox('user-questions');
-      cache.clear();
-      cache.put('list', response.data);
-    }
-    updateWithStatus(response.status);
   }
 
   updateWithStatus(Status value) async {

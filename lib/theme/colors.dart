@@ -49,10 +49,17 @@ const LinearGradient buttonGradientType1 = LinearGradient(
     Color(0xCCB5E1FF),
   ],
 );
+
+const LinearGradient buttonGradientType2 = LinearGradient(colors: [
+  Color(0xFF5DAC6E),
+  Color(0xFF00E08F),
+]);
+
 const Color overlayButtonType1 = Color(0x881FA5FF);
 const Color overlayButtonType2 = Color(0x778B3630);
 const Color overlayButtonType3 = Color(0xC7B5E1FF);
 const Color overlayButtonType4 = Color(0xFF2C414E);
+const Color overlayButtonType5 = Color(0xB24B8F5A);
 const Color dividerColor = Color(0xC7B5E1FF);
 const Color buttonTextType1 = Color(0xFFF8FCFF);
 const Color buttonColorType3 = Color(0xDE8CB5E4);
@@ -68,14 +75,24 @@ const Color iconColorType3 = Color(0xC2B65959);
 const Color textColorType2 = Color(0xFFBFE5FF);
 const Color textColorType3 = Color(0xFF98B2C9);
 const Color textColorType4 = Color(0xA4FFFFFF);
+const Color textColorType5 = Color(0xFFFFFFFF);
 
 const Color darkBackground = Color(0xFF192229);
 const Color darkBackground2 = Color(0x33192229);
 const Color darkBackground3 = Color(0xA81C2A33);
+const Color indicatorColor = Color(0xA841515C);
 // End QuizCreateView
 
 //chart colors
 const Color sectionColor1 = Color(0x881FA5FF);
 const Color sectionColor2 = Color(0xC21C2A33);
+
+const List<Color> sectionColors = [
+  Color(0x73FF3C00),
+  Color(0x885FFF1F),
+  Color(0x881F48FF),
+  Color(0x88FF1FEC),
+  Color(0x881FFFE1),
+];
 
 //end charts colors

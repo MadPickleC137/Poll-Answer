@@ -268,11 +268,14 @@ class ListQuizView extends StatelessWidget {
                     style: titleTextStyle,
                   ),
                 ),
-                Text(
-                  questions[position].description.toString(),
-                  textAlign: TextAlign.justify,
-                  style: normalTextStyle,
-                  overflow: TextOverflow.visible,
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    questions[position].description.toString(),
+                    textAlign: TextAlign.justify,
+                    style: normalTextStyle,
+                    overflow: TextOverflow.visible,
+                  ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 4, bottom: 4.0),
@@ -362,8 +365,7 @@ class ListQuizView extends StatelessWidget {
             decoration: BoxDecoration(color: darkBackground),
             padding: const EdgeInsets.all(8.0),
             child: Text(
-              // item.text,
-              " kfsjdhk hskdjh fkjhsdfh ksjdhjf shdkfjhsdkjhf jsdhfk shdf kshd kfjhsdfhsdkjfhsdkfhsdkjhfsjdhf ks hd fkhsdfkjhsdk fh skdj fh ksdhfkwehiofhwep fhwiofhwpef jsdlkjh pifdhf gpwoe f",
+              item.text,
               style: normalTextStyle,
               textAlign: TextAlign.justify,
               overflow: TextOverflow.visible,
@@ -406,8 +408,7 @@ class ListQuizView extends StatelessWidget {
           decoration: BoxDecoration(color: darkBackground),
           padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 10.0),
           child: Text(
-            // item.text,
-            "Lorem ipsum — классический текст-«рыба». Является искажённым отрывком из философского трактата Марка Туллия Цицерона ",
+            item.text,
             style: normalTextStyle,
           ),
         ),

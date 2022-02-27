@@ -13,6 +13,7 @@ import 'package:poll_answer/model/answer.dart';
 import 'package:poll_answer/model/category.dart';
 import 'package:poll_answer/theme/app_theme.dart';
 import 'package:poll_answer/theme/colors.dart';
+import 'package:poll_answer/widgets/app_bar.dart';
 import 'package:poll_answer/widgets/button_style.dart';
 import 'package:poll_answer/widgets/decoration_app_bar.dart';
 import 'package:poll_answer/widgets/divider.dart';
@@ -24,7 +25,8 @@ class QuizCreateView extends StatelessWidget {
   Widget build(BuildContext context) {
     controller.getCategories();
     return Scaffold(
-      appBar: toolBar(context),
+      appBar: appBarBackButton(
+          tr('create-quiz'), context, controller.navigateToBack),
       resizeToAvoidBottomInset: true,
       backgroundColor: backgroundColor,
       body: bodyWidget(context),
@@ -82,11 +84,7 @@ class QuizCreateView extends StatelessWidget {
               Spacer(),
               Padding(
                 padding: const EdgeInsets.only(left: 32.0),
-                child: Text(tr('add-quiz'),
-                    style: TextStyle(
-                        fontFamily: 'rubik',
-                        color: buttonTextType1,
-                        fontSize: 15)),
+                child: Text(tr('add-quiz'), style: buttonTextStyle),
               ),
               Spacer(),
               Image.asset(
@@ -99,54 +97,6 @@ class QuizCreateView extends StatelessWidget {
           onPressed: () {
             controller.createQuestion();
           },
-        ),
-      ),
-    );
-  }
-
-  PreferredSize toolBar(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-    return PreferredSize(
-      preferredSize: Size(width, 50),
-      child: Container(
-        width: double.infinity,
-        margin: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
-        decoration: decorationAppBar(),
-        child: Row(
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            TextButton(
-              style: buttonStyle(
-                background: Colors.transparent,
-                overlay: appBarButtonOverlay,
-                size: Size(35, 35),
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: Icon(
-                Icons.arrow_back_ios_new_rounded,
-                color: appBarIconColor,
-              ),
-              onPressed: () {
-                controller.navigateToBack();
-              },
-            ),
-            Spacer(),
-            Padding(
-              padding: const EdgeInsets.only(right: 40),
-              child: Align(
-                alignment: Alignment.center,
-                child: Text(
-                  tr('create-quiz'),
-                  style: TextStyle(
-                    fontFamily: 'rubik',
-                    fontSize: 18,
-                    color: appBarTextColor2,
-                  ),
-                ),
-              ),
-            ),
-            Spacer(),
-          ],
         ),
       ),
     );

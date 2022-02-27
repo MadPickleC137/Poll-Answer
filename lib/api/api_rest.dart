@@ -73,10 +73,9 @@ class RestApi {
   static Future<ResponseApi> createQuestion(Question question) async {
     Uri url = _url(RouterApi.addQuestionUrl, {});
     var body = question.toJsonForSend();
-    print(body);
     var response = await http.post(url, headers: await _header, body: body);
     Status status = Status.Empty;
-    print(response.body);
+    print("createQuestion RESPONSE: " + response.body);
     status = _checkAnyStatus(response.statusCode);
 
     return ResponseApi(status: status, data: null);

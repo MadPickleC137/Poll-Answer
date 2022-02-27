@@ -104,3 +104,10 @@ const TextStyle normalTextStyle = TextStyle(
   fontSize: 14,
   color: textColorType4,
 );
+const TextStyle quizTitleTextStyle = TextStyle(
+  fontFamily: 'rubik',
+  fontSize: 16,
+  color: textColorType5,
+);
+const TextStyle buttonTextStyle =
+    TextStyle(fontFamily: 'rubik', color: buttonTextType1, fontSize: 15);

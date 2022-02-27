@@ -22,17 +22,24 @@ class DialogActionParams {
   });
 }
 
+const textStyle = TextStyle(
+  fontFamily: 'rubik',
+  letterSpacing: 1.0,
+  fontSize: 16,
+  color: textColorType5,
+);
+
 void dialogAction(String message, List<DialogActionParams> actionsParams) {
   Get.defaultDialog(
     title: tr('action'),
-    titleStyle: titleTextStyle,
+    titleStyle: textStyle,
     backgroundColor: transparent,
     content: Container(
       decoration: const BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(14)),
         color: backgroundColor,
       ),
-      padding: const EdgeInsets.only(top: 10, bottom: 10),
+      padding: const EdgeInsets.all(10),
       child: Column(
         mainAxisSize: MainAxisSize.max,
         children: _listActions(actionsParams),
@@ -46,7 +53,7 @@ List<Widget> _listActions(List<DialogActionParams> actionsParams) {
       .map(
         (param) => Container(
           height: buttonHeight,
-          margin: EdgeInsets.all(8.0),
+          margin: const EdgeInsets.all(10.0),
           decoration: BoxDecoration(
             gradient: param.gradient,
             borderRadius: const BorderRadius.all(Radius.circular(10)),
@@ -77,7 +84,9 @@ List<Widget> _listActions(List<DialogActionParams> actionsParams) {
                 ),
               ],
             ),
-            onPressed: () {},
+            onPressed: () {
+              param.action?.call();
+            },
           ),
         ),
       )

@@ -85,27 +85,5 @@ class DetailController extends GetxController {
     }
 
     isShowedSnackBar = true;
-    // dialogAction("Success", [
-    //   DialogActionParams(
-    //     text: tr('show_stat'),
-    //     gradient: LinearGradient(colors: [
-    //       Color(0xFF5DAC6E),
-    //       Color(0xFF00E08F),
-    //     ]),
-    //     imagePath: "assets/img/ic_stat.png",
-    //     overlayColor: Color(0xB24B8F5A),
-    //     action: null,
-    //   ),
-    //   DialogActionParams(
-    //     text: tr('close_quiz'),
-    //     gradient: LinearGradient(colors: [
-    //       Color(0xFF5DAC6E),
-    //       Color(0xFF00E08F),
-    //     ]),
-    //     imagePath: "assets/img/ic_edit.png",
-    //     overlayColor: Color(0xB24B8F5A),
-    //     action: null,
-    //   ),
-    // ]);
   }
 }

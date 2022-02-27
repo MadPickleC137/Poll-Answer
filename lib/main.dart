@@ -21,8 +21,9 @@ Future<void> main() async {
   runApp(EasyLocalization(
       path: 'assets/translations',
       supportedLocales: [Locale('en'), Locale('ru')],
-      fallbackLocale: const Locale('ru'),
-      startLocale: const Locale('ru'),
+      fallbackLocale: Locale('ru'),
+      startLocale: Locale('ru'),
+      saveLocale: false,
       child: PollAnswerApp()));
 }
 
